@@ -21,7 +21,7 @@ const Home: React.FC = () => {
           A Computer Engineering graduate, passionate about React, Golang, and full‑stack development.
         </p>
         <a
-          href="/about"
+          href="/#/about"
           className="bg-accent text-white px-6 py-3 rounded hover:bg-blue-500 transition"
         >
           Learn More About Me
