@@ -21,7 +21,7 @@ const Projects: React.FC = () => {
   }, []);
 
   return (
-    <section className="container mx-auto py-12 px-4">
+    <section className="container mx-auto py-12 px-4 mt-16">
       <motion.h2
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -30,7 +30,7 @@ const Projects: React.FC = () => {
       >
         My Projects
       </motion.h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {projects.map(project => (
           <motion.a
             key={project.id}

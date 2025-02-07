@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 const About: React.FC = () => {
   return (
-    <section className="container mx-auto py-12 px-4">
+    <section className="container mx-auto py-12 px-4 mt-16">
       <motion.h2
         initial={{ x: -100, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}

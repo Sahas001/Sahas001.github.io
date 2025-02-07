@@ -1,6 +1,6 @@
 // src/components/Skills.tsx
 import React from 'react';
-import { FaReact, FaNodeJs, FaJava, FaPython } from 'react-icons/fa';
+import { FaReact, FaJava, FaPython } from 'react-icons/fa';
 import { SiTypescript, SiGoland, SiJavascript } from 'react-icons/si';
 import { motion } from 'framer-motion';
 
@@ -9,14 +9,13 @@ const skills = [
   { name: 'TypeScript', icon: <SiTypescript size={40} color="#3178C6" /> },
   { name: 'JavaScript', icon: <SiJavascript size={40} color="#F7DF1E" /> },
   { name: 'Golang', icon: <SiGoland size={40} color="#00ADD8" /> },
-  { name: 'Backend', icon: <FaNodeJs size={40} color="#68A063" /> },
+  { name: 'Python', icon: <FaPython size={40} color="#3178C6" /> },
   { name: 'Others', icon: <FaJava size={40} color="#f89820" /> },
-  { name: 'Python', icon: <FaPython size={40} color="#306998" /> },
 ];
 
 const Skills: React.FC = () => {
   return (
-    <section className="container mx-auto py-12 px-4">
+    <section className="container mx-auto py-12 px-4 mt-16">
       <motion.h2
         initial={{ x: 100, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
@@ -25,7 +24,7 @@ const Skills: React.FC = () => {
       >
         Skills
       </motion.h2>
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8">
         {skills.map(skill => (
           <motion.div
             key={skill.name}
@@ -42,5 +41,4 @@ const Skills: React.FC = () => {
 };
 
 export default Skills;
-
 
