@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="refresh" content="5;url=/">
+  <title>404 - Page Not Found</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(45deg, #ff6b6b, #f0a6ca);
+      color: white;
+      text-align: center;
+      flex-direction: column;
+    }
+
+    h1 {
+      font-size: 100px;
+      font-weight: bold;
+      animation: shake 0.5s ease infinite alternate;
+    }
+
+    p {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    .redirect {
+      font-size: 18px;
+      margin-top: 10px;
+      color: #ffeb3b;
+    }
+
+    @keyframes shake {
+      0% {
+        transform: translateX(0);
+      }
+
+      25% {
+        transform: translateX(-10px);
+      }
+
+      50% {
+        transform: translateX(10px);
+      }
+
+      75% {
+        transform: translateX(-10px);
+      }
+
+      100% {
+        transform: translateX(10px);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h1>404</h1>
+  <p>Oops! Page not found.</p>
+  <p class="redirect">You will be redirected to the home page in a few seconds...</p>
+</body>
+
+</html>
