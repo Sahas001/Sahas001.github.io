@@ -15,7 +15,7 @@ const About: React.FC = () => {
       </motion.h2>
       <div className="flex flex-col md:flex-row items-center">
         <motion.img
-          src="https://static.vecteezy.com/system/resources/previews/029/154/898/non_2x/side-view-skeleton-wearing-shirt-in-profile-halloween-theme-avatar-social-media-profile-print-flat-illustration-free-vector.jpg"
+          src="https://img.freepik.com/premium-vector/doodle-man-drawn-childish-style-vector-illustration_362838-540.jpg"
           alt="Profile"
           className="rounded-full w-64 h-64 mb-8 md:mb-0 md:mr-8 shadow-lg"
           initial={{ scale: 0 }}
