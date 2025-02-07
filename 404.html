@@ -4,72 +4,98 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="refresh" content="5;url=/">
   <title>404 - Page Not Found</title>
   <style>
-    * {
+    body {
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
       font-family: 'Arial', sans-serif;
+      background-color: #f7fafc;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      background: linear-gradient(45deg, #ff6b6b, #f0a6ca);
-      color: white;
+      color: #333;
+    }
+
+    .container {
       text-align: center;
-      flex-direction: column;
+      padding: 40px 60px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .container:hover {
+      transform: scale(1.05);
+      opacity: 0.9;
     }
 
     h1 {
-      font-size: 100px;
-      font-weight: bold;
-      animation: shake 0.5s ease infinite alternate;
+      font-size: 6em;
+      margin: 0;
+      color: #2d3748;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .emoji {
+      font-size: 80px;
+      color: #ff6f61;
+      animation: bounce 1s infinite alternate;
     }
 
     p {
-      font-size: 20px;
-      margin-bottom: 20px;
+      font-size: 1.2em;
+      color: #4a5568;
+      margin: 20px 0;
+      animation: fadeIn 1.5s ease-in-out;
     }
 
-    .redirect {
-      font-size: 18px;
-      margin-top: 10px;
-      color: #ffeb3b;
+    a {
+      text-decoration: none;
+      background-color: #3182ce;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 5px;
+      font-size: 1.2em;
+      transition: background-color 0.3s ease;
+      animation: fadeIn 2s ease-in-out;
     }
 
-    @keyframes shake {
+    a:hover {
+      background-color: #2b6cb0;
+    }
+
+    @keyframes fadeIn {
       0% {
-        transform: translateX(0);
-      }
-
-      25% {
-        transform: translateX(-10px);
-      }
-
-      50% {
-        transform: translateX(10px);
-      }
-
-      75% {
-        transform: translateX(-10px);
+        opacity: 0;
       }
 
       100% {
-        transform: translateX(10px);
+        opacity: 1;
+      }
+    }
+
+    @keyframes bounce {
+      0% {
+        transform: translateY(0);
+      }
+
+      100% {
+        transform: translateY(-20px);
       }
     }
   </style>
 </head>
 
 <body>
-  <h1>404</h1>
-  <p>Oops! Page not found.</p>
-  <p class="redirect">You will be redirected to the home page in a few seconds...</p>
+  <div class="container">
+    <div class="emoji">🙃</div>
+    <h1>404</h1>
+    <p>Whoops! The page you're looking for can't be found.</p>
+    <a href="#/">Go Back Home</a>
+  </div>
 </body>
 
 </html>
