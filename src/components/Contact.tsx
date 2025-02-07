@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion"; // For smooth animations
+import { ToastContainer, toast, ToastOptions } from "react-toastify"; // Importing toastify
+import "react-toastify/dist/ReactToastify.css"; // Import toastify styles
 
 const Contact = () => {
   const [status, setStatus] = useState<string | null>(null);
@@ -16,15 +18,28 @@ const Contact = () => {
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
         import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         form,
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY)
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      )
       .then(
         () => {
           setStatus("✅ Message sent successfully!");
           form.reset();
+          // Notification on success
+          const options: ToastOptions = {
+            position: "bottom-right", // Use position as string
+            autoClose: 3000,
+          };
+          toast.success("Message sent successfully! 🎉", options);
         },
         (error) => {
           console.error("EmailJS Error:", error);
           setStatus("❌ Failed to send message. Try again.");
+          // Notification on error
+          const options: ToastOptions = {
+            position: "bottom-right", // Use position as string
+            autoClose: 3000,
+          };
+          toast.error("Failed to send message. Please try again. 😞", options);
         }
       );
   };
@@ -73,6 +88,9 @@ const Contact = () => {
         </motion.button>
       </form>
       {status && <p className="text-center mt-4 text-gray-300">{status}</p>}
+
+      {/* Toast container to hold the notifications */}
+      <ToastContainer />
     </motion.div>
   );
 };
