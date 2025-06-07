@@ -1,7 +1,6 @@
 "use client";
 
 import { JSX, useState } from 'react';
-import Button from '@/components/Button';
 import Link from 'next/link';
 import Home from '@/sections/Home';
 import Projects from '@/sections/Projects';

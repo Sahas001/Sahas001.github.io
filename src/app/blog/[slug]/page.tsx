@@ -4,7 +4,6 @@ import { Metadata } from 'next';
 import Markdown from '../../markdown.module.css'
 import Badge from '@/components/Badge';
 import BlogPage from '@/sections/BlogPage';
-import { div } from 'motion/react-client';
 
 type Params = {
   params: Promise<{
