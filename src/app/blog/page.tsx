@@ -11,7 +11,7 @@ export default function Page() {
           <h1 className="text-3xl text-purple-400 font-bold mt-5 mb-4">Welcome to My Blogs!!🙏</h1>
           <Link href="/">
             <button
-              className="text-blue-300 mb-4 hover:underline hover:text-purple-200 transition"
+              className="text-blue-300 mb-4 hover:underline hover:text-red-500 transition"
             >
               ←- Go Back
             </button>
