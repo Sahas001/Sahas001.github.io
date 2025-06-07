@@ -1,18 +1,29 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f0e1c5;
-  /* Latte background */
-  /* --foreground: #3c4f69; */
-  --foreground: #6e7368;
-  /* Latte text */
-  --accent: #d20f39;
-  /* Accent red */
-  --muted: #9ca0b0;
-  /* Subtle text */
-  --link: #1e66f5;
-  /* Blue link */
-  --div: #e2e8cc;
+  /* --background: #f0e1c5; */
+  /* /* Latte background */
+  /* --foreground: #6e7368; */
+  /* /* Latte text */
+  /* --accent: #d20f39; */
+  /* /* Accent red */
+  /* --muted: #9ca0b0; */
+  /* /* Subtle text */
+  /* --link: #1e66f5; */
+  /* /* Blue link */
+  /* --div: #e2e8cc; */
+  --background: #1e1e2e;
+  /* Mocha background */
+  --foreground: #cdd6f4;
+  /* Mocha text */
+  --accent: #f38ba8;
+  /* Pink accent */
+  --muted: #7f849c;
+  /* Soft gray text */
+  --link: #89b4fa;
+  /* Sky blue */
+  --div: #1F2937;
+  --p: #93C5FD
 }
 
 @theme inline {
