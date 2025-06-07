@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import Badge from "./Badge";
 import { FolderOpenDot, Github } from "lucide-react";
@@ -6,12 +7,12 @@ import { motion } from "framer-motion";
 export default function ProjectCard({
 	name,
 	description,
-	stack,
+	badge,
 	githubLink,
 }: {
 	name: string;
 	description: string;
-	stack: string[];
+	badge: string[];
 	githubLink?: string;
 }) {
 	return (
@@ -19,7 +20,7 @@ export default function ProjectCard({
 			<Link href={githubLink || "#"} rel="noopener noreferrer" target="_blank">
 				<h2 className="text-xl font-bold text-blue-400 mb-4">{name}<FolderOpenDot className="inline-block ml-4" /></h2>
 				<p className="text-blue-300 mb-4">{description}</p>
-				<p className="text-blue-300 mb-4">{stack.map((tech) => {
+				<p className="text-blue-300 mb-4">{badge.map((tech) => {
 					return (
 						<Badge key={tech} name={tech} />
 					);

@@ -36,7 +36,7 @@ export default function Projects() {
 			<h1 className="text-3xl text-blue-400 font-bold mt-5 mb-4">Some of My Projects!📂</h1>
 			<div className="mt-5 grid grid-cols-1 md:grid-cols-2 gap-4">
 				{projects.map((project, index) => (
-					<ProjectCard key={index} name={project.name} description={project.description} stack={project.stack} githubLink={project.githubLink} />
+					<ProjectCard key={index} name={project.name} description={project.description} badge={project.stack} githubLink={project.githubLink} />
 				))}
 			</div>
 		</div>

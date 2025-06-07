@@ -2,6 +2,9 @@ import { getAllPosts, getPostBySlug } from '@/lib/posts'
 import { markdownToHtml } from '@/lib/utils';
 import { Metadata } from 'next';
 import Markdown from '../../markdown.module.css'
+import Badge from '@/components/Badge';
+import BlogPage from '@/sections/BlogPage';
+import { div } from 'motion/react-client';
 
 type Params = {
   params: Promise<{
@@ -45,21 +48,22 @@ export default async function BlogPost(props: Params) {
   }
 
   return (
-    <article className="prose prose-invert max-w-none">
-      <h1 className="text-3xl font-bold text-purple-blue mb-2">{post.title}</h1>
-      <time className="text-sm text-muted mb-6 block">{new Date(post.date).toLocaleDateString()}</time>
-      <div className="flex flex-wrap gap-2 mb-8">
-        {post.tags.map((tag) => (
-          <span key={tag} className="px-2 py-1 text-xs rounded-md bg-card-border text-purple">
-            {tag}
-          </span>
-        ))}
-      </div>
-      <div
-        className={Markdown['markdown']}
-        dangerouslySetInnerHTML={{ __html: content }}
-      />
-    </article>
+    <div className="flex min-h-screen items-center justify-center">
+      <article className="prose prose-invert max-w-4xl w-full">
+        <BlogPage title={post.title} description={post.description}>
+          <time className="text-sm text-muted mb-6 block">{new Date(post.date).toLocaleDateString()}</time>
+          <div className="flex flex-wrap gap-2 mb-8">
+            {post.tags.map((tag) => (
+              <Badge name={tag} key={tag} />
+            ))}
+          </div>
+          <div
+            className={Markdown['markdown']}
+            dangerouslySetInnerHTML={{ __html: content }}
+          />
+        </BlogPage>
+      </article>
+    </div>
   )
 }
 

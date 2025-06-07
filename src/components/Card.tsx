@@ -1,3 +1,4 @@
+"use client";
 import { motion } from 'framer-motion';
 
 export default function Card({ title, description, children }: { title: string; description?: string; children: React.ReactNode }) {

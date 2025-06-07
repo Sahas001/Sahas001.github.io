@@ -4,7 +4,6 @@
   line-height: 1.75rem;
   /* leading-relaxed */
   /* Tailwind: text-gray-800 */
-  font-family: JetBrains Mono, monospace;
 }
 
 .markdown h1 {
@@ -92,7 +91,7 @@
 }
 
 .markdown pre {
-  background-color: #1e293b;
+  background-color: #161e29;
   /* Tailwind: slate-800 */
   color: #f8fafc;
   /* Tailwind: slate-50 */
