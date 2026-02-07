@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import TerminalStatusBar from "@/components/TerminalStatusBar";
+import { Suspense } from "react";
 import { IBM_Plex_Mono } from "next/font/google";
 
 const terminalMono = IBM_Plex_Mono({
@@ -50,7 +51,9 @@ export default function RootLayout({
     <html lang="en" className={terminalMono.variable}>
       <body>
         {children}
-        <TerminalStatusBar />
+        <Suspense fallback={null}>
+          <TerminalStatusBar />
+        </Suspense>
       </body>
     </html>
   );
