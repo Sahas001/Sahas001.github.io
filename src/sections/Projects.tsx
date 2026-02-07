@@ -37,7 +37,7 @@ export default function Projects() {
 				<span className="text-[color:var(--accent)]">~$</span>{" "}
 				<span className="text-[color:var(--muted)]">ls projects</span>
 			</h1>
-			<div className="mt-5 grid grid-cols-1 md:grid-cols-2 gap-4 terminal-output">
+			<div className="mt-5 grid grid-cols-1 md:grid-cols-2 gap-4">
 				{projects.map((project, index) => (
 					<ProjectCard
 						key={index}

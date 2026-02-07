@@ -39,7 +39,7 @@ export default function BlogList({ posts }: { posts: BlogPost[] }) {
         </div>
       ) : (
         filtered.map((post, index) => (
-          <div key={post.id}>
+          <div key={post.id} className="blog-row-anim" style={{ animationDelay: `${index * 40}ms` }}>
             <Link href={`/blog/${post.id}`} className="blog-list-row">
               <span className="blog-cell" data-label="date">{post.date || "-"}</span>
               <span className="blog-cell blog-title" data-label="title">{post.title}</span>

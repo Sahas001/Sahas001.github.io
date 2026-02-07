@@ -8,7 +8,7 @@ export default function Card({ title, description, children }: { title: React.Re
 				{title}
 			</h2>
 			<p className="text-[color:var(--muted)] mb-4">{description}</p>
-			<div className="terminal-output flex flex-col gap-4">
+			<div className="flex flex-col gap-4">
 				{children}
 			</div>
 		</motion.div >

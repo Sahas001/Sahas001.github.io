@@ -11,6 +11,31 @@ export default function Page() {
   return (
     <div className="min-h-screen p-6 sm:p-10 flex flex-col">
       <TerminalHeader />
+      <div className="ascii-wrap">
+        <pre className="ascii-block">
+          {`
+
+███████╗ █████╗ ██╗  ██╗ █████╗ ███████╗
+██╔════╝██╔══██╗██║  ██║██╔══██╗██╔════╝
+███████╗███████║███████║███████║███████╗
+╚════██║██╔══██║██╔══██║██╔══██║╚════██║
+███████║██║  ██║██║  ██║██║  ██║███████║
+╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝
+
+`}
+        </pre>
+        <pre className="ascii-block">
+          {`
+
+    ████████╗██╗███╗   ███╗██╗██╗     ███████╗██╗███╗   ██╗ █████╗ 
+    ╚══██╔══╝██║████╗ ████║██║██║     ██╔════╝██║████╗  ██║██╔══██╗
+       ██║   ██║██╔████╔██║██║██║     ███████╗██║██╔██╗ ██║███████║
+       ██║   ██║██║╚██╔╝██║██║██║     ╚════██║██║██║╚██╗██║██╔══██║
+       ██║   ██║██║ ╚═╝ ██║██║███████╗███████║██║██║ ╚████║██║  ██║
+       ╚═╝   ╚═╝╚═╝     ╚═╝╚═╝╚══════╝╚══════╝╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝
+`}
+        </pre>
+      </div>
       <Suspense fallback={null}>
         <TerminalNav />
       </Suspense>
@@ -23,7 +48,7 @@ export default function Page() {
           Notes on systems, web, and things I am learning.
         </p>
       </div>
-      <div className="mt-6 flex-1 terminal-output">
+      <div className="mt-6 flex-1">
         <BlogList posts={posts} />
       </div>
       <TerminalFooter />
