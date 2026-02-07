@@ -6,6 +6,7 @@ import Badge from '@/components/Badge';
 import TerminalNav from '@/components/TerminalNav';
 import TerminalFooter from '@/components/TerminalFooter';
 import TerminalHeader from '@/components/TerminalHeader';
+import { Suspense } from 'react';
 import BlogPage from '@/sections/BlogPage';
 
 type Params = {
@@ -52,7 +53,9 @@ export default async function BlogPost(props: Params) {
   return (
     <div className="min-h-screen p-6 sm:p-10 flex flex-col">
       <TerminalHeader />
-      <TerminalNav />
+      <Suspense fallback={null}>
+        <TerminalNav />
+      </Suspense>
       <article className="max-w-5xl w-full mt-6 flex-1">
         <BlogPage title={post.title} description={post.description}>
           <time className="text-sm text-[color:var(--muted)] mb-6 block">{new Date(post.date).toLocaleDateString()}</time>

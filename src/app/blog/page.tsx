@@ -1,6 +1,7 @@
 import TerminalNav from "@/components/TerminalNav";
 import TerminalFooter from "@/components/TerminalFooter";
 import TerminalHeader from "@/components/TerminalHeader";
+import { Suspense } from "react";
 import { getAllPosts } from "@/lib/posts";
 import Link from "next/link";
 
@@ -9,7 +10,9 @@ export default function Page() {
   return (
     <div className="min-h-screen p-6 sm:p-10 flex flex-col">
       <TerminalHeader />
-      <TerminalNav />
+      <Suspense fallback={null}>
+        <TerminalNav />
+      </Suspense>
       <div className="flex flex-col mt-4">
         <h1 className="text-2xl sm:text-3xl font-bold mt-5 mb-2">
           <span className="text-[color:var(--accent)]">~$</span>{" "}
