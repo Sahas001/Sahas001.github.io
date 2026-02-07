@@ -1,7 +1,6 @@
 "use client";
 
 import { JSX } from 'react';
-import Link from 'next/link';
 import Home from '@/sections/Home';
 import Projects from '@/sections/Projects';
 import About from '@/sections/About';

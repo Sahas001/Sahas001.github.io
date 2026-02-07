@@ -1,4 +1,3 @@
-import BlogCard from "@/components/BlogCard";
 import TerminalNav from "@/components/TerminalNav";
 import TerminalFooter from "@/components/TerminalFooter";
 import TerminalHeader from "@/components/TerminalHeader";

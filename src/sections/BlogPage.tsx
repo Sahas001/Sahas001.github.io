@@ -8,7 +8,7 @@ export default function Card({ title, description, children }: { title: string; 
 			<div className="flex items-center justify-between mb-4">
 				<h2 className="text-2xl font-bold mb-4">
 					<span className="text-[color:var(--accent)]">~$</span>{" "}
-					<span className="text-[color:var(--muted)]">cat "{title}"</span>
+					<span className="text-[color:var(--muted)]">cat &quot;{title}&quot;</span>
 					<span className="terminal-cursor" aria-hidden="true" />
 				</h2>
 				<button
