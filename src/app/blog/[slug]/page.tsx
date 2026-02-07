@@ -3,6 +3,9 @@ import { markdownToHtml } from '@/lib/utils';
 import { Metadata } from 'next';
 import Markdown from '../../markdown.module.css'
 import Badge from '@/components/Badge';
+import TerminalNav from '@/components/TerminalNav';
+import TerminalFooter from '@/components/TerminalFooter';
+import TerminalHeader from '@/components/TerminalHeader';
 import BlogPage from '@/sections/BlogPage';
 
 type Params = {
@@ -40,20 +43,22 @@ export default async function BlogPost(props: Params) {
   const params = await props.params;
   const post = getPostBySlug(params.slug);
 
-  const content = await markdownToHtml(post.content || '');
-
   if (!post) {
     return <div className="text-center">Post not found</div>;
   }
 
+  const content = await markdownToHtml(post.content || '');
+
   return (
-    <div className="flex min-h-screen items-center justify-center">
-      <article className="prose prose-invert max-w-4xl w-full">
+    <div className="min-h-screen p-6 sm:p-10 flex flex-col">
+      <TerminalHeader />
+      <TerminalNav />
+      <article className="max-w-5xl w-full mt-6 flex-1">
         <BlogPage title={post.title} description={post.description}>
-          <time className="text-sm text-muted mb-6 block">{new Date(post.date).toLocaleDateString()}</time>
+          <time className="text-sm text-[color:var(--muted)] mb-6 block">{new Date(post.date).toLocaleDateString()}</time>
           <div className="flex flex-wrap gap-2 mb-8">
             {post.tags.map((tag) => (
-              <Badge name={tag} key={tag} />
+              <Badge name={tag} key={tag} variant="flag" />
             ))}
           </div>
           <div
@@ -62,8 +67,7 @@ export default async function BlogPost(props: Params) {
           />
         </BlogPage>
       </article>
+      <TerminalFooter />
     </div>
   )
 }
-
-

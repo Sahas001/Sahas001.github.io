@@ -1,5 +1,13 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import TerminalStatusBar from "@/components/TerminalStatusBar";
+import { IBM_Plex_Mono } from "next/font/google";
+
+const terminalMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-terminal-mono",
+});
 
 
 export const metadata: Metadata = {
@@ -39,10 +47,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-      >
+    <html lang="en" className={terminalMono.variable}>
+      <body>
         {children}
+        <TerminalStatusBar />
       </body>
     </html>
   );

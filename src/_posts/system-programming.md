@@ -1,7 +1,7 @@
 ---
 id: system-programming
 title: System Programming
-description: This blog is just for testing asdfsadf sadfgasrger awegfearg awegaerb aergaew awegaewrg abbr ase rewe wefgwerg .
+description: This blog is just for testing.
 tags: [programming, system, low-level]
 date: 2023-10-01
 ---

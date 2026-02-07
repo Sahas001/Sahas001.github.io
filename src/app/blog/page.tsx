@@ -1,37 +1,46 @@
 import BlogCard from "@/components/BlogCard";
+import TerminalNav from "@/components/TerminalNav";
+import TerminalFooter from "@/components/TerminalFooter";
+import TerminalHeader from "@/components/TerminalHeader";
 import { getAllPosts } from "@/lib/posts";
 import Link from "next/link";
 
 export default function Page() {
   const posts = getAllPosts();
   return (
-    <div className="flex h-screen items-center justify-center">
-      <div className="text-center">
-        <div className="flex items-center justify-between mb-4">
-          <h1 className="text-3xl text-purple-400 font-bold mt-5 mb-4">Welcome to My Blogs!!🙏</h1>
-          <Link href="/">
-            <button
-              className="text-blue-300 mb-4 hover:underline hover:text-red-500 transition"
-            >
-              ←- Go Back
-            </button>
-          </Link>
-
-        </div>
-        <ul>
-          {posts.map((post, index) => (
-            <li key={index} className="mb-2">
-              <Link href={`/blog/${post.id}`}>
-                <BlogCard
-                  name={post.title}
-                  description={post.description}
-                  badge={post.tags}
-                />
-              </Link>
-            </li>
-          ))}
-        </ul>
+    <div className="min-h-screen p-6 sm:p-10 flex flex-col">
+      <TerminalHeader />
+      <TerminalNav />
+      <div className="flex flex-col mt-4">
+        <h1 className="text-2xl sm:text-3xl font-bold mt-5 mb-2">
+          <span className="text-[color:var(--accent)]">~$</span>{" "}
+          <span className="text-[color:var(--muted)]">ls blog</span>
+          <span className="terminal-cursor" aria-hidden="true" />
+        </h1>
+        <p className="text-sm sm:text-base text-[color:var(--p)] mb-4">
+          Notes on systems, web, and things I am learning.
+        </p>
       </div>
+      <div className="mt-6 flex-1 terminal-output">
+        <div className="blog-list">
+          <div className="blog-list-head">
+            <span>date</span>
+            <span>title</span>
+            <span>tags</span>
+          </div>
+          {posts.map((post, index) => (
+            <div key={post.id}>
+              <Link href={`/blog/${post.id}`} className="blog-list-row">
+                <span>{post.date || "-"}</span>
+                <span className="blog-title">{post.title}</span>
+                <span className="blog-tags">{post.tags.map((t) => `--${t}`).join(" ")}</span>
+              </Link>
+              {index < posts.length - 1 ? <div className="blog-divider" aria-hidden="true" /> : null}
+            </div>
+          ))}
+        </div>
+      </div>
+      <TerminalFooter />
     </div>
   );
 }
