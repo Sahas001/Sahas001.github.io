@@ -15,6 +15,11 @@ export default function TerminalStatusBar() {
       <span className="terminal-status-label">section</span> {section}
       <span className="terminal-status-sep">|</span>
       <span className="terminal-status-label">mode</span> interactive
+      <span className="terminal-status-sep">|</span>
+      <span className="terminal-status-label">cmd</span> Ctrl+K
+      <span className="terminal-status-sep terminal-status-nav">|</span>
+      <span className="terminal-status-label terminal-status-nav">nav</span>
+      <span className="terminal-status-nav"> h/l</span>
     </div>
   );
 }

@@ -21,13 +21,14 @@ export default function TerminalNav() {
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
+      if (e.ctrlKey || e.metaKey || e.altKey) return;
       if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) {
         return;
       }
-      if (e.key !== "j" && e.key !== "k") return;
+      if (e.key !== "h" && e.key !== "l") return;
       e.preventDefault();
       const idx = navItems.findIndex((i) => i.name === active);
-      const next = e.key === "j" ? idx + 1 : idx - 1;
+      const next = e.key === "l" ? idx + 1 : idx - 1;
       const wrapped = (next + navItems.length) % navItems.length;
       router.push(navItems[wrapped].href);
     }

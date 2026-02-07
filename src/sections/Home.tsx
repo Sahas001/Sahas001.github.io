@@ -1,5 +1,6 @@
 import Button from '@/components/Button'
 import Card from '@/components/Card'
+import ContactCommand from '@/components/ContactCommand'
 
 export default function Home() {
 	return (
@@ -30,6 +31,9 @@ export default function Home() {
 						<li>Frontend Frameworks: React, Next.js</li>
 						<li>Other Tools: Docker, Kubernetes, Nginx</li>
 					</ul>
+				</Card>
+				<Card title={<><span className="text-[color:var(--accent)]">~$</span>{" "}<span className="text-[color:var(--muted)]">command</span></>} description="Try: contact, github, linkedin, instagram">
+					<ContactCommand />
 				</Card>
 
 			</div>
