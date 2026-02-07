@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 export default function TerminalHeader() {
   const [lastLogin, setLastLogin] = useState<string>("--");
+  const [hint, setHint] = useState("Ctrl+K");
 
   useEffect(() => {
     const now = new Date();
@@ -15,6 +16,9 @@ export default function TerminalHeader() {
       minute: "2-digit",
     });
     setLastLogin(formatted);
+    if (navigator.platform.toLowerCase().includes("mac")) {
+      setHint("⌘K");
+    }
   }, []);
   return (
     <div className="text-xs sm:text-sm text-[color:var(--muted)] mb-4">
@@ -23,7 +27,7 @@ export default function TerminalHeader() {
         <span className="text-[color:var(--accent)]">~$</span>{" "}
         <span className="text-[color:var(--muted)]">./start</span>
       </div>
-      <div className="text-[color:var(--muted)]">tip: press Ctrl+K to open command palette</div>
+      <div className="text-[color:var(--muted)]">tip: press {hint} to open command palette</div>
     </div>
   );
 }

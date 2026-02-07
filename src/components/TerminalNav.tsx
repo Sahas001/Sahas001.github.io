@@ -37,7 +37,7 @@ export default function TerminalNav() {
   }, [active, router]);
 
   return (
-    <div className="mt-6 flex flex-wrap items-center gap-x-8 gap-y-3">
+    <div className="mt-6 terminal-nav">
       {navItems.map((item) => (
         <Link key={item.name} href={item.href} className="no-underline">
           <Tabs name={item.name} highlighted={active === item.name} />

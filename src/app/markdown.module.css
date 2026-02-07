@@ -169,6 +169,14 @@
   border: 1px solid var(--border);
 }
 
+@media (max-width: 640px) {
+  .markdown {
+    font-size: 1.05rem;
+    line-height: 1.9rem;
+    padding: 1rem 1.1rem;
+  }
+}
+
 /* PrismJS token colors (terminal-like) */
 .markdown :global(.token.comment),
 .markdown :global(.token.prolog),

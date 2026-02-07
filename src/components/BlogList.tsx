@@ -25,7 +25,7 @@ export default function BlogList({ posts }: { posts: BlogPost[] }) {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
-        <span className="text-[color:var(--muted)]">{filtered.length} results</span>
+        <span className="blog-search-count">{filtered.length} results</span>
       </div>
       <div className="blog-list-head">
         <span>date</span>
@@ -41,7 +41,7 @@ export default function BlogList({ posts }: { posts: BlogPost[] }) {
         filtered.map((post, index) => (
           <div key={post.id} className="blog-row-anim" style={{ animationDelay: `${index * 40}ms` }}>
             <Link href={`/blog/${post.id}`} className="blog-list-row">
-              <span className="blog-cell" data-label="date">{post.date || "-"}</span>
+              <span className="blog-cell" data-label="date">{post.date ? new Date(post.date).toISOString().slice(0, 10) : "-"}</span>
               <span className="blog-cell blog-title" data-label="title">{post.title}</span>
               <span className="blog-cell blog-tags" data-label="tags">{post.tags.map((t) => `--${t}`).join(" ")}</span>
             </Link>

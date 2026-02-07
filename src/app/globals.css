@@ -98,6 +98,15 @@ body > * {
   z-index: 2;
 }
 
+@media (max-width: 640px) {
+  body::before {
+    opacity: 0.18;
+  }
+  body::after {
+    opacity: 0.5;
+  }
+}
+
 
 .terminal-status {
   position: fixed;
@@ -166,6 +175,7 @@ p {
 @media (max-width: 480px) {
   .ascii-wrap {
     gap: 0.75rem;
+    justify-content: flex-start;
   }
 }
 
@@ -193,6 +203,26 @@ p {
   border-left: 2px solid var(--border);
   padding-left: 1rem;
   color: var(--p);
+}
+
+.terminal-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .terminal-nav {
+    position: sticky;
+    top: 0.75rem;
+    z-index: 8;
+    background: rgba(11, 17, 23, 0.8);
+    backdrop-filter: blur(4px);
+    border: 1px dashed var(--border);
+    border-radius: 0.5rem;
+    padding: 0.4rem 0.75rem;
+  }
 }
 
 
@@ -275,6 +305,14 @@ p {
   will-change: transform, opacity;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .blog-row-anim {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
 @keyframes blog-row-in {
   from {
     opacity: 0;
@@ -291,6 +329,12 @@ p {
   align-items: center;
   gap: 0.6rem;
   padding: 0.4rem 0.6rem 0.8rem;
+}
+
+.blog-search-count {
+  color: var(--muted);
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
 }
 
 .blog-search-input {
@@ -439,6 +483,16 @@ p {
   margin-top: 0.6rem;
   color: var(--muted);
   font-size: 0.8rem;
+}
+
+.blog-command {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px dashed var(--border);
+  border-radius: 0.4rem;
+  padding: 0.35rem 0.6rem;
+  color: var(--p);
 }
 
 .blog-progress {
