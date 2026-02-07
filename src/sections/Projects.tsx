@@ -36,7 +36,6 @@ export default function Projects() {
 			<h1 className="text-2xl sm:text-3xl font-bold mt-5 mb-4">
 				<span className="text-[color:var(--accent)]">~$</span>{" "}
 				<span className="text-[color:var(--muted)]">ls projects</span>
-				<span className="terminal-cursor" aria-hidden="true" />
 			</h1>
 			<div className="mt-5 grid grid-cols-1 md:grid-cols-2 gap-4 terminal-output">
 				{projects.map((project, index) => (

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import TerminalStatusBar from "@/components/TerminalStatusBar";
+import CommandPalette from "@/components/CommandPalette";
 import { Suspense } from "react";
 import { IBM_Plex_Mono } from "next/font/google";
 
@@ -54,6 +55,7 @@ export default function RootLayout({
         <Suspense fallback={null}>
           <TerminalStatusBar />
         </Suspense>
+        <CommandPalette />
       </body>
     </html>
   );

@@ -23,6 +23,7 @@ export default function TerminalHeader() {
         <span className="text-[color:var(--accent)]">~$</span>{" "}
         <span className="text-[color:var(--muted)]">./start</span>
       </div>
+      <div className="text-[color:var(--muted)]">tip: press Ctrl+K to open command palette</div>
     </div>
   );
 }
