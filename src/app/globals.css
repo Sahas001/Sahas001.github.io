@@ -290,14 +290,25 @@ p {
 }
 
 @media (max-width: 640px) {
-  .blog-list-head,
+  .blog-list-head {
+    display: none;
+  }
   .blog-list-row {
     grid-template-columns: 1fr;
+    row-gap: 0.35rem;
+  }
+  .blog-cell::before {
+    content: attr(data-label);
+    display: block;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-bottom: 0.15rem;
   }
   .blog-tags {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    white-space: normal;
+    overflow: visible;
   }
 }
 

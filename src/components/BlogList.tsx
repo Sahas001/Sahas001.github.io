@@ -41,9 +41,9 @@ export default function BlogList({ posts }: { posts: BlogPost[] }) {
         filtered.map((post, index) => (
           <div key={post.id}>
             <Link href={`/blog/${post.id}`} className="blog-list-row">
-              <span>{post.date || "-"}</span>
-              <span className="blog-title">{post.title}</span>
-              <span className="blog-tags">{post.tags.map((t) => `--${t}`).join(" ")}</span>
+              <span className="blog-cell" data-label="date">{post.date || "-"}</span>
+              <span className="blog-cell blog-title" data-label="title">{post.title}</span>
+              <span className="blog-cell blog-tags" data-label="tags">{post.tags.map((t) => `--${t}`).join(" ")}</span>
             </Link>
             {index < filtered.length - 1 ? <div className="blog-divider" aria-hidden="true" /> : null}
           </div>
