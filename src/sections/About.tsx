@@ -7,7 +7,7 @@ export default function About() {
 				<p>
 					I care about clear code, predictable systems, and shipping work that lasts.
 					My sweet spot is full-stack development with a systems mindset — practical architecture, strong typing, and clean interfaces.
-					Outside of code, I enjoy music and classic cinema.
+					Outside of code, I enjoy music, classic cinema, and Formula 1.
 				</p>
 			</Card>
 		</div>
