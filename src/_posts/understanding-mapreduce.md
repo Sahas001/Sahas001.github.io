@@ -7,7 +7,6 @@ tags:
   - distributed-systems
   - map-reduce
   - google
-  - big-data
 ---
 
 
