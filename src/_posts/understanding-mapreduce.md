@@ -1,7 +1,7 @@
 ---
 title: Understanding MapReduce
 date: "2026-05-23"
-description: How MapReduce works as a programming model for processing on Large Clusters.
+description: And how it works as a programming model for processing on Large Clusters.
 tags:
   - programming
   - distributed-systems
@@ -11,7 +11,7 @@ tags:
 ---
 
 
-# Understanding How MapReduce Works.
+# Understanding How MapReduce Works
 
 `MapReduce` is a programming model and an associated implementation for processing and generating large data sets. It abstracts details and complexities like task scheduling, fault tolerance, synchronization, data distribution, from the developers.
 `MapReduce` involves two major operations:
