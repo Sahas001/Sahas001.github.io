@@ -1,6 +1,6 @@
 ---
 title: Understanding MapReduce
-date: "2026-02-07"
+date: "2026-05-23"
 description: How MapReduce works as a programming model for processing on Large Clusters.
 tags:
   - programming
