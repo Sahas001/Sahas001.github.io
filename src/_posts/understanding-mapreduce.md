@@ -140,3 +140,5 @@ Some of the limitations of `MapReduce` are:
 
 `MapReduce` programming model is an efficeient and easy to use model, even for beginners in distributed systems, since it hides the details of parallelization, fault-tolerance, locality optimization, and load balancing. Also, a large variety of problems are easily expressible in this model.
 
+[Here](github.com/Sahas001/MapReduce) is a simple implementation of MapReduce in Go, which you can use to understand the concepts better.
+
