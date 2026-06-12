@@ -5,6 +5,8 @@ import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import rehypeStringify from 'rehype-stringify';
 import rehypePrism from 'rehype-prism-plus';
+import remarkGfm from 'remark-gfm';
+import remarkToc from 'remark-toc';
 import { twMerge } from 'tailwind-merge';
 
 export function cn(...inputs: ClassValue[]) {
@@ -14,6 +16,8 @@ export function cn(...inputs: ClassValue[]) {
 export async function markdownToHtml(content: string) {
 	const processedContent = await remark()
 		.use(remarkParse)
+		.use(remarkGfm)
+		.use(remarkToc, { heading: 'table of contents|toc' })
 		.use(remarkRehype)
 		.use(rehypePrism)
 		.use(rehypeStringify)

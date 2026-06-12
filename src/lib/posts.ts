@@ -21,6 +21,10 @@ export function getPostBySlug(slug: string): BlogPost | null {
 
 	const tags = Array.isArray(data.tags) ? data.tags.map(String) : [];
 	const date = data.date ? String(data.date) : "";
+	const wordCount = content.split(/\s+/).length;
+	const readingTime = `${Math.ceil(wordCount / 200)} min read`;
+	const sizeBytes = Buffer.byteLength(content, 'utf8');
+	const size = sizeBytes < 1024 ? `${sizeBytes}B` : `${(sizeBytes / 1024).toFixed(1)}K`;
 
 	return {
 		id: validSlug,
@@ -29,6 +33,8 @@ export function getPostBySlug(slug: string): BlogPost | null {
 		description: data.description ?? "",
 		tags,
 		content,
+		readingTime,
+		size,
 	} as BlogPost;
 
 

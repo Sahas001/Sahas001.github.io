@@ -16,11 +16,11 @@ export default function ProjectCard({
 	githubLink?: string;
 }) {
 	return (
-		<motion.div className="card p-4 rounded-lg shadow-lg mt-2" whileHover={{ scale: 1.01, boxShadow: "0px 0px 10px rgba(126, 231, 135, 0.25)" }} whileTap={{ scale: 0.95 }} initial={{ opacity: 0, y: 20, scale: 0.9 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ duration: 0.4 }}>
+		<motion.div className="card card-hover p-4 rounded-lg shadow-lg mt-2" initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.15, ease: "easeOut" }}>
 			<Link href={githubLink || "#"} rel="noopener noreferrer" target="_blank">
-				<h2 className="text-xl font-bold text-[color:var(--accent-2)] mb-4">{name}<FolderOpenDot className="inline-block ml-4" /></h2>
-				<p className="text-[color:var(--p)] mb-4">{description}</p>
-				<p className="text-[color:var(--p)] mb-4">{badge.map((tech) => {
+				<h2 className="text-base sm:text-lg font-bold text-[color:var(--accent-2)] mb-4">{name}<FolderOpenDot className="inline-block ml-4" /></h2>
+				<p className="text-[color:var(--p)] mb-2">{description}</p>
+				<p className="text-[color:var(--p)] mb-2">{badge.map((tech) => {
 					return (
 						<Badge key={tech} name={tech} />
 					);

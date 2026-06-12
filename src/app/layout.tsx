@@ -27,6 +27,7 @@ export const metadata: Metadata = {
     siteName: "Sahas Timilsina",
     locale: "en_US",
     type: "website",
+    images: ["/og-image.png"],
   },
   icons: {
     icon: "/favicon.ico",

@@ -129,7 +129,7 @@
 }
 
 .markdown pre::before {
-  content: "OUTPUT";
+  content: "CODE";
   position: absolute;
   top: 0.4rem;
   left: 0.8rem;
@@ -137,6 +137,21 @@
   color: var(--muted);
   letter-spacing: 0.08em;
 }
+
+/* Dynamic code block language headers */
+.markdown pre[class*="language-"]::before { content: "CODE"; }
+.markdown pre.language-js::before, .markdown pre.language-javascript::before { content: "JAVASCRIPT"; }
+.markdown pre.language-ts::before, .markdown pre.language-typescript::before { content: "TYPESCRIPT"; }
+.markdown pre.language-go::before { content: "GO"; }
+.markdown pre.language-bash::before, .markdown pre.language-sh::before, .markdown pre.language-shell::before { content: "BASH"; }
+.markdown pre.language-python::before, .markdown pre.language-py::before { content: "PYTHON"; }
+.markdown pre.language-rust::before, .markdown pre.language-rs::before { content: "RUST"; }
+.markdown pre.language-json::before { content: "JSON"; }
+.markdown pre.language-html::before { content: "HTML"; }
+.markdown pre.language-css::before { content: "CSS"; }
+.markdown pre.language-c::before { content: "C"; }
+.markdown pre.language-cpp::before, .markdown pre.language-c\+\+::before { content: "C++"; }
+
 
 .markdown hr {
   border: none;

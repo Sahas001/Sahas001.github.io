@@ -30,7 +30,7 @@ export default function BlogList({ posts }: { posts: BlogPost[] }) {
       <div className="blog-list-head">
         <span>date</span>
         <span>title</span>
-        <span>tags</span>
+        <span>flags</span>
       </div>
       {filtered.length === 0 ? (
         <div className="blog-empty">
@@ -40,10 +40,19 @@ export default function BlogList({ posts }: { posts: BlogPost[] }) {
       ) : (
         filtered.map((post, index) => (
           <div key={post.id} className="blog-row-anim" style={{ animationDelay: `${index * 40}ms` }}>
-            <Link href={`/blog/${post.id}`} className="blog-list-row">
+            <Link href={`/blog/${post.id}`} className="blog-list-row group">
               <span className="blog-cell" data-label="date">{post.date ? new Date(post.date).toISOString().slice(0, 10) : "-"}</span>
               <span className="blog-cell blog-title" data-label="title">{post.title}</span>
-              <span className="blog-cell blog-tags" data-label="tags">{post.tags.map((t) => `--${t}`).join(" ")}</span>
+              <span className="blog-cell flex flex-wrap gap-2 items-center" data-label="flags">
+                {post.tags.map((t) => (
+                  <span 
+                    key={t} 
+                    className="px-2 py-0.5 text-xs rounded border border-[color:var(--border)] bg-[#0b1117] text-[color:var(--muted)]"
+                  >
+                    --{t}
+                  </span>
+                ))}
+              </span>
             </Link>
             {index < filtered.length - 1 ? <div className="blog-divider" aria-hidden="true" /> : null}
           </div>

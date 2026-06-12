@@ -6,6 +6,7 @@ import Home from "@/sections/Home";
 import Projects from "@/sections/Projects";
 import About from "@/sections/About";
 import TerminalNav from "@/components/TerminalNav";
+import { AnimatePresence, motion } from "framer-motion";
 import TerminalFooter from "@/components/TerminalFooter";
 import TerminalHeader from "@/components/TerminalHeader";
 
@@ -67,8 +68,18 @@ export default function HomePage() {
         </pre>
       </div>
       <TerminalNav />
-      <div className="mt-2 sm:mt-4 flex-1">
-        {tabs[selected].content}
+      <div className="mt-2 sm:mt-4 flex-1 relative min-h-[50vh]">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={selected}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.15, ease: "easeOut" }}
+          >
+            {tabs[selected].content}
+          </motion.div>
+        </AnimatePresence>
       </div>
       <TerminalFooter />
     </div>
