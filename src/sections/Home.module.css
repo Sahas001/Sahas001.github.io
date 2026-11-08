@@ -69,18 +69,16 @@
 /* Stack: a spec plate, columns split by ink rules */
 .stack {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2px;
   border: 2px solid var(--ink);
-  background: var(--bg-card);
+  background: var(--ink);
   box-shadow: var(--shadow-hard);
 }
 
 .stackCol {
   padding: 20px 22px 22px;
-}
-
-.stackCol + .stackCol {
-  border-left: 2px solid var(--ink);
+  background: var(--bg-card);
 }
 
 .stackCol dt {
@@ -216,12 +214,8 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .stackCol:nth-child(3) {
-    border-left: none;
-  }
-
-  .stackCol:nth-child(n + 3) {
-    border-top: 2px solid var(--ink);
+  .stackCol:last-child:nth-child(odd) {
+    grid-column: span 2;
   }
 }
 

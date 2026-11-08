@@ -465,3 +465,9 @@ a.tag-badge:hover {
     transition-duration: 0ms !important;
   }
 }
+
+@media (max-width: 560px) {
+  .section-heading span {
+    display: none;
+  }
+}

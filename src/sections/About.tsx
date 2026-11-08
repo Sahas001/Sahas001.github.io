@@ -4,7 +4,9 @@ import styles from "./About.module.css";
 const spec = [
   { key: "role", value: "Computer engineer" },
   { key: "builds with", value: "React, Next.js, Go" },
+  { key: "learning", value: "Deep learning, LLMs, agents" },
   { key: "curious about", value: "Distributed systems, how things work under the hood" },
+  { key: "registered", value: "Nepal Engineering Council, no. 89492" },
   { key: "off hours", value: "Books, music, classic films, Formula 1" },
   { key: "writes at", value: "this blog and phasethru.dev" },
 ];
@@ -24,6 +26,11 @@ export default function About() {
             Most of my work lives in the React and Next.js world, but I spend a decent amount of
             time with Go and lower-level stuff too. I care about how things work under the hood,
             which is usually what the blog ends up being about.
+          </p>
+          <p>
+            Lately I&apos;ve been steering toward AI and deep learning. I&apos;ve finished the Deep
+            Learning Specialization along with courses on TensorFlow and on generative AI with large
+            language models, and I&apos;m building on that next.
           </p>
           <p>Outside of code: books, music, classic films, and F1.</p>
           <p>

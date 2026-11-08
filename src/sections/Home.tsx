@@ -4,6 +4,8 @@ import Wordmark from "@/components/Wordmark";
 import TerminalWindow from "@/components/TerminalWindow";
 import ContactCommand from "@/components/ContactCommand";
 import { socials } from "@/components/SiteFooter";
+import Certifications from "@/components/Certifications";
+import { certifications, featuredCertification } from "@/data/certifications";
 import { formatDate } from "@/lib/format";
 import type { BlogPostSummary } from "@/types/blogs";
 import styles from "./Home.module.css";
@@ -13,6 +15,7 @@ const skillGroups = [
   { category: "Web", items: ["React", "Next.js", "Tailwind"] },
   { category: "Backend", items: ["Node.js", "PostgreSQL", "Docker"] },
   { category: "Tools", items: ["Git", "Linux", "Nginx"] },
+  { category: "Machine learning", items: ["TensorFlow", "CNNs", "Sequence models", "LLMs"] },
 ];
 
 export default function Home({ latest }: { latest: BlogPostSummary[] }) {
@@ -29,8 +32,8 @@ export default function Home({ latest }: { latest: BlogPostSummary[] }) {
               Computer engineer who likes building things and figuring out how they work.
             </p>
             <p className={styles.sub}>
-              Most of my work lives in React and Next.js, with a fair amount of Go and
-              lower-level systems on the side. I write about what I learn on the blog.
+              Most of my work lives in React, Next.js and Go. Lately I&apos;ve been going deep
+              on machine learning: neural networks, sequence models and large language models.
             </p>
             <div className={styles.ctas}>
               <Link href="/?tab=projects" className="btn-primary">
@@ -71,6 +74,14 @@ export default function Home({ latest }: { latest: BlogPostSummary[] }) {
             </div>
           ))}
         </dl>
+      </section>
+
+      <section className={styles.block} aria-labelledby="certs-heading">
+        <div className="section-heading">
+          <h2 id="certs-heading">Certifications</h2>
+          <span>Each one links to its verification page</span>
+        </div>
+        <Certifications featured={featuredCertification} others={certifications} />
       </section>
 
       {latest.length > 0 && (
