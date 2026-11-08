@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import Wordmark from "@/components/Wordmark";
 import TerminalWindow from "@/components/TerminalWindow";
@@ -74,7 +73,6 @@ export default function Home({ latest }: { latest: BlogPostSummary[] }) {
       <section className={styles.block} aria-labelledby="certs-heading">
         <div className="section-heading">
           <h2 id="certs-heading">Certifications</h2>
-          <span>Each one links to its verification page</span>
         </div>
         <Certifications featured={featuredCertification} others={certifications} />
       </section>
@@ -122,23 +120,12 @@ export default function Home({ latest }: { latest: BlogPostSummary[] }) {
         </section>
       )}
 
-      <section className={styles.block}>
-        <a
-          href="https://phasethru.dev"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.phasethru}
-        >
-          <Image src="/phasethru-icon.png" alt="" width={44} height={44} />
-          <span className={styles.phasethruText}>
-            <span className={styles.phasethruTitle}>I also publish on Phasethru</span>
-            <span className={styles.phasethruSub}>
-              Longer dispatches on systems, web technologies and software craft.
-            </span>
-          </span>
-          <span className={styles.phasethruCta}>phasethru.dev ↗</span>
+      <p className={styles.phasethru}>
+        Longer pieces on systems and software craft go out on{" "}
+        <a href="https://phasethru.dev" target="_blank" rel="noopener noreferrer">
+          Phasethru ↗
         </a>
-      </section>
+      </p>
     </div>
   );
 }

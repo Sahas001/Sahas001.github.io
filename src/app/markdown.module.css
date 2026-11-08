@@ -168,7 +168,7 @@
 .markdown hr {
   margin: 40px 0;
   border: none;
-  border-top: 1px dashed var(--border-strong);
+  border-top: 1px solid var(--border-color);
 }
 
 .markdown table {
