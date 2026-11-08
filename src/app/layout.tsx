@@ -1,19 +1,42 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { Suspense } from "react";
+import { Chakra_Petch, IBM_Plex_Mono, Newsreader, Space_Mono } from "next/font/google";
+import SiteHeader from "@/components/SiteHeader";
+import SiteFooter from "@/components/SiteFooter";
 import TerminalStatusBar from "@/components/TerminalStatusBar";
 import CommandPalette from "@/components/CommandPalette";
-import { Suspense } from "react";
-import { IBM_Plex_Mono } from "next/font/google";
+import { getAllPosts } from "@/lib/posts";
 
-const terminalMono = IBM_Plex_Mono({
+const spaceMono = Space_Mono({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-terminal-mono",
+  weight: ["400", "700"],
+  variable: "--font-space-mono",
 });
 
+const newsreader = Newsreader({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  variable: "--font-newsreader",
+});
+
+const plexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-plex-mono",
+});
+
+const chakra = Chakra_Petch({
+  subsets: ["latin"],
+  weight: ["700"],
+  variable: "--font-chakra",
+});
 
 export const metadata: Metadata = {
-  title: "Sahas Timilsina",
+  title: {
+    template: "%s | Sahas Timilsina",
+    default: "Sahas Timilsina — Computer Engineer",
+  },
   description: "Portfolio website of Sahas Timilsina – Computer Engineer passionate about music, classic cinema, Formula 1, and software craftsmanship.",
   keywords: ["Sahas Timilsina", "Portfolio", "Computer Engineer", "Software Developer", "Full Stack", "Go Developer", "React Developer"],
   authors: [{ name: "Sahas Timilsina", url: "https://sahastimilsina.com.np" }],
@@ -43,20 +66,29 @@ export const metadata: Metadata = {
   },
 };
 
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Only titles and slugs cross into the client-side command palette.
+  const postCommands = getAllPosts().map((p) => ({ label: p.title, href: `/blog/${p.id}` }));
+
   return (
-    <html lang="en" className={terminalMono.variable}>
+    <html
+      lang="en"
+      className={`${spaceMono.variable} ${newsreader.variable} ${plexMono.variable} ${chakra.variable}`}
+    >
       <body>
-        {children}
+        <Suspense fallback={null}>
+          <SiteHeader />
+        </Suspense>
+        <main style={{ paddingTop: "var(--header-height)", minHeight: "80vh" }}>{children}</main>
+        <SiteFooter />
         <Suspense fallback={null}>
           <TerminalStatusBar />
         </Suspense>
-        <CommandPalette />
+        <CommandPalette posts={postCommands} />
       </body>
     </html>
   );

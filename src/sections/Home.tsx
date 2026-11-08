@@ -1,56 +1,120 @@
-import Badge from '@/components/Badge'
-import Button from '@/components/Button'
-import Card from '@/components/Card'
-import ContactCommand from '@/components/ContactCommand'
-import ScrambleText from '@/components/ScrambleText'
+import Image from "next/image";
+import Link from "next/link";
+import Wordmark from "@/components/Wordmark";
+import TerminalWindow from "@/components/TerminalWindow";
+import ContactCommand from "@/components/ContactCommand";
+import { socials } from "@/components/SiteFooter";
+import { formatDate } from "@/lib/format";
+import type { BlogPostSummary } from "@/types/blogs";
+import styles from "./Home.module.css";
 
-export default function Home() {
-	return (
-		<div className="flex flex-col">
-			<h1 className="text-2xl sm:text-3xl text-[color:var(--accent-2)] font-bold mt-5 mb-2">
-				<ScrambleText text="Hello, I'm Sahas" />
-			</h1>
-			<p className="text-sm sm:text-base text-[color:var(--p)] mb-4">Computer engineer who likes building things and figuring out how they work.</p>
-			<div className="flex flex-wrap gap-3">
-				<Button href="https://instagram.com/sahastimilsina" name="Instagram" />
-				<Button href="https://linkedin.com/in/sahas001" name="LinkedIn" />
-				<Button href="https://github.com/Sahas001" name="Github" />
-			</div>
-			<div className="mt-10">
-				<Card title={<><span className="text-[color:var(--accent)]">~$</span>{" "}<span className="text-[color:var(--muted)]">whoami</span></>} >
-					<p>
-						I studied computer engineering and got into web dev somewhere along the way.
-						Most of my time goes into React, TypeScript, and Go — but I also like poking
-						at systems-level stuff with C/C++ when I get the chance.
-					</p>
-				</Card>
-				<Card title={<><span className="text-[color:var(--accent)]">~$</span>{" "}<span className="text-[color:var(--muted)]">skills</span></>}>
-					<div className="flex flex-col gap-2">
-						<div className="flex flex-wrap items-center gap-1">
-							<span className="text-[color:var(--accent-2)] text-sm mr-1">lang</span>
-							<Badge name="TypeScript" /><Badge name="Go" /><Badge name="Python" /><Badge name="C/C++" />
-						</div>
-						<div className="flex flex-wrap items-center gap-1">
-							<span className="text-[color:var(--accent-2)] text-sm mr-1">web</span>
-							<Badge name="React" /><Badge name="Next.js" /><Badge name="Tailwind" />
-						</div>
-						<div className="flex flex-wrap items-center gap-1">
-							<span className="text-[color:var(--accent-2)] text-sm mr-1">backend</span>
-							<Badge name="Node.js" /><Badge name="PostgreSQL" /><Badge name="Docker" />
-						</div>
-						<div className="flex flex-wrap items-center gap-1">
-							<span className="text-[color:var(--accent-2)] text-sm mr-1">tools</span>
-							<Badge name="Git" /><Badge name="Linux" /><Badge name="Nginx" />
-						</div>
-					</div>
-				</Card>
-				<Card title={<><span className="text-[color:var(--accent)]">~$</span>{" "}<span className="text-[color:var(--muted)]">command</span></>} description="Try: contact, github, linkedin, instagram">
-					<ContactCommand />
-				</Card>
+const skillGroups = [
+  { category: "Languages", items: ["TypeScript", "Go", "Python", "C/C++"] },
+  { category: "Web", items: ["React", "Next.js", "Tailwind"] },
+  { category: "Backend", items: ["Node.js", "PostgreSQL", "Docker"] },
+  { category: "Tools", items: ["Git", "Linux", "Nginx"] },
+];
 
-			</div>
+export default function Home({ latest }: { latest: BlogPostSummary[] }) {
+  return (
+    <div className="container-wide">
+      <section className={styles.hero}>
+        <h1 className={styles.name}>
+          <Wordmark size="xl" />
+        </h1>
 
-		</div>
+        <div className={styles.heroGrid}>
+          <div className={styles.intro}>
+            <p className={styles.lede}>
+              Computer engineer who likes building things and figuring out how they work.
+            </p>
+            <p className={styles.sub}>
+              Most of my work lives in React and Next.js, with a fair amount of Go and
+              lower-level systems on the side. I write about what I learn on the blog.
+            </p>
+            <div className={styles.ctas}>
+              <Link href="/?tab=projects" className="btn-primary">
+                See projects
+              </Link>
+              <Link href="/blog" className="btn-secondary">
+                Read the blog
+              </Link>
+            </div>
+            <ul className={styles.socials}>
+              {socials.map((s) => (
+                <li key={s.label}>
+                  <a href={s.href} target="_blank" rel="noopener noreferrer">
+                    {s.label} ↗
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-	)
+          <TerminalWindow title="sahas@portfolio: ~" className={styles.terminal}>
+            <ContactCommand />
+          </TerminalWindow>
+        </div>
+      </section>
+
+      <section className={styles.block} aria-labelledby="stack-heading">
+        <div className="section-heading">
+          <h2 id="stack-heading">What I work with</h2>
+        </div>
+        <dl className={styles.stack}>
+          {skillGroups.map((group) => (
+            <div key={group.category} className={styles.stackCol}>
+              <dt>{group.category}</dt>
+              {group.items.map((item) => (
+                <dd key={item}>{item}</dd>
+              ))}
+            </div>
+          ))}
+        </dl>
+      </section>
+
+      {latest.length > 0 && (
+        <section className={styles.block} aria-labelledby="writing-heading">
+          <div className="section-heading">
+            <h2 id="writing-heading">Latest writing</h2>
+            <Link href="/blog">All posts ↗</Link>
+          </div>
+          <ol className={styles.posts}>
+            {latest.map((post) => (
+              <li key={post.id}>
+                <Link href={`/blog/${post.id}`} className={styles.postRow}>
+                  <time dateTime={post.date} className={styles.postDate}>
+                    {formatDate(post.date)}
+                  </time>
+                  <span className={styles.postBody}>
+                    <span className={styles.postTitle}>{post.title}</span>
+                    <span className={styles.postExcerpt}>{post.description}</span>
+                  </span>
+                  <span className={styles.postMeta}>{post.readingTime}</span>
+                </Link>
+              </li>
+            ))}
+          </ol>
+        </section>
+      )}
+
+      <section className={styles.block}>
+        <a
+          href="https://phasethru.dev"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.phasethru}
+        >
+          <Image src="/phasethru-icon.png" alt="" width={44} height={44} />
+          <span className={styles.phasethruText}>
+            <span className={styles.phasethruTitle}>I also publish on Phasethru</span>
+            <span className={styles.phasethruSub}>
+              Longer dispatches on systems, web technologies and software craft.
+            </span>
+          </span>
+          <span className={styles.phasethruCta}>phasethru.dev ↗</span>
+        </a>
+      </section>
+    </div>
+  );
 }

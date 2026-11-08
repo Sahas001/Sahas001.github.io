@@ -1,63 +1,78 @@
 "use client";
 
-import Link from "next/link";
 import { useMemo, useState } from "react";
-import type { BlogPost } from "@/types/blogs";
+import type { BlogPostSummary } from "@/types/blogs";
+import CoverStory from "./blog/CoverStory";
+import ArticleCard from "./blog/ArticleCard";
+import styles from "./BlogList.module.css";
 
-export default function BlogList({ posts }: { posts: BlogPost[] }) {
+export default function BlogList({ posts }: { posts: BlogPostSummary[] }) {
   const [query, setQuery] = useState("");
+  const q = query.trim().toLowerCase();
 
-  const filtered = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    if (!q) return posts;
-    return posts.filter((p) => {
-      const haystack = `${p.title} ${p.description} ${p.tags.join(" ")}`.toLowerCase();
-      return haystack.includes(q);
-    });
-  }, [posts, query]);
+  const featured = posts.find((p) => p.featured) ?? posts[0];
+  const rest = posts.filter((p) => p !== featured);
+
+  const results = useMemo(() => {
+    if (!q) return [];
+    return posts.filter((p) =>
+      `${p.title} ${p.description} ${p.category} ${p.tags.join(" ")}`.toLowerCase().includes(q),
+    );
+  }, [posts, q]);
 
   return (
-    <div className="blog-list">
-      <div className="blog-search">
+    <>
+      <div className={styles.searchRow}>
+        <label htmlFor="blog-search" className={styles.searchPrompt}>
+          ~$ grep
+        </label>
         <input
-          className="blog-search-input"
-          placeholder="search posts..."
+          id="blog-search"
+          type="search"
+          className={styles.searchInput}
+          placeholder="Search by title, topic or tag"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
+          autoComplete="off"
         />
-        <span className="blog-search-count">{filtered.length} results</span>
       </div>
-      <div className="blog-list-head">
-        <span>date</span>
-        <span>title</span>
-        <span>flags</span>
-      </div>
-      {filtered.length === 0 ? (
-        <div className="blog-empty">
-          <span className="text-[color:var(--accent)]">~$</span>{" "}
-          <span className="text-[color:var(--muted)]">no matches</span>
-        </div>
-      ) : (
-        filtered.map((post, index) => (
-          <div key={post.id} className="blog-row-anim" style={{ animationDelay: `${index * 40}ms` }}>
-            <Link href={`/blog/${post.id}`} className="blog-list-row group">
-              <span className="blog-cell" data-label="date">{post.date ? new Date(post.date).toISOString().slice(0, 10) : "-"}</span>
-              <span className="blog-cell blog-title" data-label="title">{post.title}</span>
-              <span className="blog-cell flex flex-wrap gap-2 items-center" data-label="flags">
-                {post.tags.map((t) => (
-                  <span 
-                    key={t} 
-                    className="px-2 py-0.5 text-xs rounded border border-[color:var(--border)] bg-[#0b1117] text-[color:var(--muted)]"
-                  >
-                    --{t}
-                  </span>
-                ))}
-              </span>
-            </Link>
-            {index < filtered.length - 1 ? <div className="blog-divider" aria-hidden="true" /> : null}
+
+      {q ? (
+        <section className={styles.feed} aria-live="polite">
+          <div className={styles.sectionHeader}>
+            {results.length} {results.length === 1 ? "match" : "matches"} for &ldquo;{query.trim()}&rdquo;
           </div>
-        ))
+          {results.length === 0 ? (
+            <p className={styles.empty}>
+              No posts match that. Try a broader word, or{" "}
+              <button type="button" onClick={() => setQuery("")}>
+                clear the search
+              </button>
+              .
+            </p>
+          ) : (
+            <div className={styles.feedList}>
+              {results.map((post) => (
+                <ArticleCard key={post.id} post={post} />
+              ))}
+            </div>
+          )}
+        </section>
+      ) : (
+        <>
+          {featured && <CoverStory post={featured} />}
+          {rest.length > 0 && (
+            <section className={styles.feed}>
+              <div className={styles.sectionHeader}>Latest articles in archive ({rest.length})</div>
+              <div className={styles.feedList}>
+                {rest.map((post) => (
+                  <ArticleCard key={post.id} post={post} />
+                ))}
+              </div>
+            </section>
+          )}
+        </>
       )}
-    </div>
+    </>
   );
 }

@@ -1,35 +1,34 @@
-"use client";
-import Link from "next/link";
-import Badge from "./Badge";
-import { FolderOpenDot, Github } from "lucide-react";
-import { motion } from "framer-motion";
+import type { Project } from "@/types/projects";
+import styles from "./ProjectCard.module.css";
 
-export default function ProjectCard({
-	name,
-	description,
-	badge,
-	githubLink,
-}: {
-	name: string;
-	description: string;
-	badge: string[];
-	githubLink?: string;
-}) {
-	return (
-		<motion.div className="card card-hover p-4 rounded-lg shadow-lg mt-2" initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.15, ease: "easeOut" }}>
-			<Link href={githubLink || "#"} rel="noopener noreferrer" target="_blank">
-				<h2 className="text-base sm:text-lg font-bold text-[color:var(--accent-2)] mb-4">{name}<FolderOpenDot className="inline-block ml-4" /></h2>
-				<p className="text-[color:var(--p)] mb-2">{description}</p>
-				<p className="text-[color:var(--p)] mb-2">{badge.map((tech) => {
-					return (
-						<Badge key={tech} name={tech} />
-					);
-				})}</p>
-				<div className="flex gap-4">
-					<p className="text-[color:var(--accent)] hover:underline"><Github className="inline-block" /> Github</p>
-				</div>
-			</Link>
-		</motion.div >
-
-	);
+export default function ProjectCard({ project }: { project: Project }) {
+  return (
+    <article className={styles.row}>
+      <div className={styles.main}>
+        <h2 className={styles.name}>
+          <a href={project.githubLink} target="_blank" rel="noopener noreferrer">
+            {project.name}
+          </a>
+        </h2>
+        <p className={styles.description}>{project.description}</p>
+        <ul className={styles.stack} aria-label="Built with">
+          {project.stack.map((tech) => (
+            <li key={tech} className="tag-badge">
+              {tech}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className={styles.links}>
+        <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="btn-secondary">
+          Source ↗
+        </a>
+        {project.liveLink && (
+          <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="btn-primary">
+            Live ↗
+          </a>
+        )}
+      </div>
+    </article>
+  );
 }

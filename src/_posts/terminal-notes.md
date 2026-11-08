@@ -2,6 +2,7 @@
 title: Terminal Notes
 date: "2026-02-07"
 description: Small notes on building terminal-like UIs in the browser.
+category: Design
 tags:
   - design
   - css

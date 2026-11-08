@@ -1,207 +1,197 @@
+/* Article prose — matches phasethru.dev */
 .markdown {
-  font-size: 1.02rem;
-  line-height: 1.85rem;
-  color: var(--p);
-  background: #0b1117;
-  border: 1px dashed var(--border);
-  border-radius: 0.6rem;
-  padding: 1.25rem 1.75rem;
+  margin-top: 48px;
+  margin-bottom: 48px;
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--text-primary);
 }
 
-.markdown h1 {
-  font-size: 2rem;
-  line-height: 2.4rem;
-  font-weight: 700;
-  margin-top: 2.25rem;
-  margin-bottom: 1rem;
-  color: var(--accent-2);
-  position: relative;
-  padding-left: 1.2rem;
+.markdown > * {
+  max-width: 70ch;
 }
 
 .markdown h2 {
-  font-size: 1.6rem;
-  line-height: 2.1rem;
-  font-weight: 600;
-  margin-top: 2rem;
-  margin-bottom: 0.75rem;
-  color: var(--accent);
-  position: relative;
-  padding-left: 1.2rem;
+  margin: 48px 0 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 1.55rem;
 }
 
 .markdown h3 {
-  font-size: 1.3rem;
-  line-height: 1.8rem;
-  font-weight: 600;
-  margin-top: 1.5rem;
-  margin-bottom: 0.5rem;
-  color: var(--accent-2);
-  position: relative;
-  padding-left: 1.2rem;
+  margin: 36px 0 12px;
+  font-size: 1.2rem;
 }
 
-.markdown h1::before,
-.markdown h2::before,
-.markdown h3::before {
-  content: ">";
-  position: absolute;
-  left: 0;
-  top: 0;
-  color: var(--accent);
+.markdown h4 {
+  margin: 28px 0 10px;
+  font-size: 1.05rem;
+}
+
+.markdown > h2:first-child {
+  margin-top: 0;
 }
 
 .markdown p {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin: 0 0 20px;
 }
 
 .markdown a {
-  color: var(--accent);
+  color: var(--accent-vermilion);
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
 }
 
 .markdown a:hover {
-  text-shadow: 0 0 10px var(--glow);
+  text-decoration-thickness: 2px;
+}
+
+.markdown strong {
+  font-weight: 700;
 }
 
 .markdown ul,
 .markdown ol {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  padding-left: 1.5rem;
+  margin: 0 0 24px;
+  padding-left: 24px;
 }
 
-.markdown ul {
-  list-style-type: disc;
-}
-
-.markdown ol {
-  list-style-type: decimal;
-}
+.markdown ul { list-style: disc; }
+.markdown ol { list-style: decimal; }
 
 .markdown li {
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 10px;
+}
+
+.markdown li::marker {
+  color: var(--accent-vermilion);
+}
+
+.markdown li > p {
+  margin: 0 0 8px;
 }
 
 .markdown blockquote {
-  padding: 0.75rem 1rem;
-  border-left: 3px solid var(--accent);
-  background: #0b1117;
-  color: var(--muted);
+  margin: 32px 0;
+  padding: 16px 24px;
+  border-left: 3px solid var(--accent-mustard);
+  background: var(--bg-secondary);
   font-style: italic;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  color: var(--text-secondary);
+}
+
+.markdown blockquote p:last-child {
+  margin-bottom: 0;
 }
 
 .markdown code {
-  background-color: #0b1117;
-  padding: 0.2rem 0.45rem;
-  font-size: 0.95rem;
-  border-radius: 0.3rem;
-  font-family: 'Fira Code', monospace;
-  color: var(--accent);
-  border: 1px solid var(--border);
+  padding: 2px 6px;
+  font-family: var(--font-mono);
+  font-size: 0.86em;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 2px;
 }
 
 .markdown pre {
-  background-color: #0f141a;
-  color: var(--foreground);
-  padding: 1.8rem 1.1rem 1rem;
-  overflow-x: auto;
-  border-radius: 0.6rem;
-  border: 1px solid var(--border);
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.02), 0 10px 25px rgba(0, 0, 0, 0.35);
-  margin-top: 1rem;
-  margin-bottom: 1rem;
   position: relative;
+  max-width: none;
+  margin: 28px 0;
+  padding: 40px 24px 20px;
+  overflow-x: auto;
+  background: var(--term-bg);
+  color: var(--term-text);
+  border: 2px solid var(--ink);
+  box-shadow: var(--shadow-hard);
+  font-size: 0.86rem;
+  line-height: 1.65;
 }
+
+/* Title bar with the language name, echoing the terminal windows elsewhere */
+.markdown pre::before {
+  content: "code";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 26px;
+  padding: 0 12px;
+  background: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  line-height: 26px;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.markdown :global(pre.language-js)::before, .markdown :global(pre.language-javascript)::before { content: "javascript"; }
+.markdown :global(pre.language-ts)::before, .markdown :global(pre.language-typescript)::before { content: "typescript"; }
+.markdown :global(pre.language-tsx)::before { content: "tsx"; }
+.markdown :global(pre.language-go)::before { content: "go"; }
+.markdown :global(pre.language-bash)::before, .markdown :global(pre.language-sh)::before, .markdown :global(pre.language-shell)::before { content: "bash"; }
+.markdown :global(pre.language-python)::before, .markdown :global(pre.language-py)::before { content: "python"; }
+.markdown :global(pre.language-rust)::before, .markdown :global(pre.language-rs)::before { content: "rust"; }
+.markdown :global(pre.language-json)::before { content: "json"; }
+.markdown :global(pre.language-html)::before { content: "html"; }
+.markdown :global(pre.language-css)::before { content: "css"; }
+.markdown :global(pre.language-c)::before { content: "c"; }
+.markdown :global(pre.language-text)::before { content: "output"; }
+.markdown :global(pre.language-cpp)::before { content: "c++"; }
 
 .markdown pre code {
-  background: none;
   padding: 0;
+  background: none;
+  border: none;
+  font-size: inherit;
   color: inherit;
-  font-size: 0.95rem;
-  font-family: 'Fira Code', monospace;
 }
-
-.markdown pre::before {
-  content: "CODE";
-  position: absolute;
-  top: 0.4rem;
-  left: 0.8rem;
-  font-size: 0.7rem;
-  color: var(--muted);
-  letter-spacing: 0.08em;
-}
-
-/* Dynamic code block language headers */
-.markdown pre[class*="language-"]::before { content: "CODE"; }
-.markdown pre.language-js::before, .markdown pre.language-javascript::before { content: "JAVASCRIPT"; }
-.markdown pre.language-ts::before, .markdown pre.language-typescript::before { content: "TYPESCRIPT"; }
-.markdown pre.language-go::before { content: "GO"; }
-.markdown pre.language-bash::before, .markdown pre.language-sh::before, .markdown pre.language-shell::before { content: "BASH"; }
-.markdown pre.language-python::before, .markdown pre.language-py::before { content: "PYTHON"; }
-.markdown pre.language-rust::before, .markdown pre.language-rs::before { content: "RUST"; }
-.markdown pre.language-json::before { content: "JSON"; }
-.markdown pre.language-html::before { content: "HTML"; }
-.markdown pre.language-css::before { content: "CSS"; }
-.markdown pre.language-c::before { content: "C"; }
-.markdown pre.language-cpp::before, .markdown pre.language-c\+\+::before { content: "C++"; }
-
 
 .markdown hr {
+  margin: 40px 0;
   border: none;
-  border-top: 1px dashed var(--border);
-  margin: 2rem 0;
+  border-top: 1px dashed var(--border-strong);
 }
 
 .markdown table {
   width: 100%;
+  margin: 24px 0;
   border-collapse: collapse;
-  margin: 1.25rem 0;
+  border: 2px solid var(--ink);
   font-size: 0.98rem;
 }
 
 .markdown th,
 .markdown td {
-  border: 1px solid var(--border);
-  padding: 0.6rem 0.75rem;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--border-strong);
   text-align: left;
 }
 
 .markdown th {
-  color: var(--accent-2);
-  background: #0b1117;
+  background: var(--bg-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .markdown img {
-  max-width: 100%;
-  border-radius: 0.5rem;
-  border: 1px solid var(--border);
+  margin: 24px 0;
+  border: 2px solid var(--ink);
+  box-shadow: var(--shadow-hard);
 }
 
-@media (max-width: 640px) {
-  .markdown {
-    font-size: 1.05rem;
-    line-height: 1.9rem;
-    padding: 1rem 1.1rem;
-  }
-}
-
-/* PrismJS token colors (terminal-like) */
+/* PrismJS tokens, tuned to the paper palette's accents */
 .markdown :global(.token.comment),
 .markdown :global(.token.prolog),
 .markdown :global(.token.doctype),
 .markdown :global(.token.cdata) {
-  color: #6b7280;
+  color: #7d838e;
+  font-style: italic;
 }
 
 .markdown :global(.token.punctuation) {
-  color: #9ca3af;
+  color: #a8adb6;
 }
 
 .markdown :global(.token.property),
@@ -209,12 +199,12 @@
 .markdown :global(.token.constant),
 .markdown :global(.token.symbol),
 .markdown :global(.token.deleted) {
-  color: #fca5a5;
+  color: #f08a7a;
 }
 
 .markdown :global(.token.boolean),
 .markdown :global(.token.number) {
-  color: #f59e0b;
+  color: #e8b34b;
 }
 
 .markdown :global(.token.selector),
@@ -223,28 +213,42 @@
 .markdown :global(.token.char),
 .markdown :global(.token.builtin),
 .markdown :global(.token.inserted) {
-  color: #7ee787;
+  color: #9cc7b3;
 }
 
 .markdown :global(.token.operator),
 .markdown :global(.token.entity),
 .markdown :global(.token.url),
 .markdown :global(.token.variable) {
-  color: #79c0ff;
+  color: #d9d4c7;
 }
 
 .markdown :global(.token.atrule),
 .markdown :global(.token.attr-value),
 .markdown :global(.token.function),
 .markdown :global(.token.class-name) {
-  color: #c4b5fd;
+  color: #e8b34b;
 }
 
 .markdown :global(.token.keyword) {
-  color: #f472b6;
+  color: #f08a7a;
 }
 
 .markdown :global(.token.regex),
 .markdown :global(.token.important) {
-  color: #f97316;
+  color: #e8b34b;
+}
+
+@media (max-width: 640px) {
+  .markdown {
+    font-size: 1.05rem;
+  }
+
+  .markdown pre {
+    margin-left: calc(-1 * clamp(16px, 4vw, 40px));
+    margin-right: calc(-1 * clamp(16px, 4vw, 40px));
+    border-left: none;
+    border-right: none;
+    box-shadow: none;
+  }
 }
