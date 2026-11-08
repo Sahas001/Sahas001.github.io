@@ -8,7 +8,7 @@ export default function Projects() {
   return (
     <div className="container-wide">
       <PageHeader title="Projects">
-        Things I&apos;ve built to learn something or scratch an itch. Everything here is open source.
+        Things I&apos;ve built, mostly to learn how something works. All of it is open source.
       </PageHeader>
       <div className={styles.featured}>
         <FeaturedProject project={featuredProject} />
