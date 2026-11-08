@@ -1,0 +1,69 @@
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: clamp(32px, 6vw, 80px);
+  /* The profile card sits level with the middle of the text, not its top. */
+  align-items: center;
+}
+
+.prose {
+  max-width: 62ch;
+}
+
+.prose p {
+  font-size: 1.2rem;
+  line-height: 1.75;
+  color: var(--text-primary);
+}
+
+.prose p + p {
+  margin-top: 1.1em;
+}
+
+.aside {
+  min-width: 0;
+}
+
+.spec {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.specRow {
+  display: grid;
+  grid-template-columns: 8.5rem 1fr;
+  gap: 12px;
+}
+
+.specRow dt {
+  color: var(--accent-mustard);
+}
+
+.specRow dt::after {
+  content: ":";
+  color: var(--term-muted);
+}
+
+.specRow dd {
+  color: var(--term-text);
+}
+
+.cursorLine {
+  margin-top: 18px;
+  color: var(--accent-mustard);
+}
+
+@media (max-width: 860px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+@media (max-width: 420px) {
+  .specRow {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}

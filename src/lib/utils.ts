@@ -13,14 +13,92 @@ export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs))
 }
 
-export async function markdownToHtml(content: string) {
-	const processedContent = await remark()
+type MdNode = { type: string; depth?: number; children?: MdNode[] };
+
+// The post page renders the title itself, so drop a leading `# Title` from the body.
+function remarkStripLeadingTitle() {
+	return (tree: MdNode) => {
+		const first = tree.children?.[0];
+		if (first?.type === 'heading' && first.depth === 1) tree.children!.shift();
+	};
+}
+
+// The post page owns the only <h1>; shift markdown headings down one level (# -> h2).
+function remarkShiftHeadings() {
+	return (tree: MdNode) => {
+		const walk = (node: MdNode) => {
+			if (node.type === 'heading' && node.depth) node.depth = Math.min(node.depth + 1, 6);
+			node.children?.forEach(walk);
+		};
+		walk(tree);
+	};
+}
+
+type HastNode = {
+	type: string;
+	tagName?: string;
+	value?: string;
+	properties?: Record<string, unknown>;
+	children?: HastNode[];
+};
+
+export type Heading = { id: string; text: string; depth: number };
+
+function textOf(node: HastNode): string {
+	if (node.type === 'text') return node.value ?? '';
+	return (node.children ?? []).map(textOf).join('');
+}
+
+function slugify(text: string) {
+	return text
+		.toLowerCase()
+		.replace(/[^a-z0-9\s-]/g, '')
+		.trim()
+		.replace(/\s+/g, '-');
+}
+
+// Give h2/h3 stable ids and a "#" link so sections can be linked to, and record them for a contents list.
+function rehypeHeadingAnchors(headings: Heading[]) {
+	return () => (tree: HastNode) => {
+		const used = new Map<string, number>();
+		const walk = (node: HastNode) => {
+			if (node.type === 'element' && (node.tagName === 'h2' || node.tagName === 'h3')) {
+				const text = textOf(node).trim();
+				let id = slugify(text) || 'section';
+				const n = used.get(id) ?? 0;
+				used.set(id, n + 1);
+				if (n) id = `${id}-${n}`;
+				node.properties = { ...node.properties, id };
+				node.children = [
+					...(node.children ?? []),
+					{
+						type: 'element',
+						tagName: 'a',
+						properties: { href: `#${id}`, className: ['heading-anchor'], ariaLabel: `Link to ${text}` },
+						children: [{ type: 'text', value: '#' }],
+					},
+				];
+				headings.push({ id, text, depth: node.tagName === 'h2' ? 2 : 3 });
+				return;
+			}
+			node.children?.forEach(walk);
+		};
+		walk(tree);
+	};
+}
+
+export async function renderPost(content: string): Promise<{ html: string; headings: Heading[] }> {
+	const headings: Heading[] = [];
+	const processed = await remark()
 		.use(remarkParse)
 		.use(remarkGfm)
 		.use(remarkToc, { heading: 'table of contents|toc' })
+		.use(remarkStripLeadingTitle)
+		.use(remarkShiftHeadings)
 		.use(remarkRehype)
 		.use(rehypePrism)
+		.use(rehypeHeadingAnchors(headings))
 		.use(rehypeStringify)
 		.process(content);
-	return processedContent.toString();
+	return { html: processed.toString(), headings };
 }

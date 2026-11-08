@@ -1,0 +1,81 @@
+.row {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 32px;
+  align-items: center;
+  padding: 32px 0 32px 24px;
+  border-bottom: 1px dashed var(--border-strong);
+}
+
+/* Mustard bar marks the row under the pointer or keyboard focus. */
+.row::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 32px;
+  bottom: 32px;
+  width: 4px;
+  background: var(--border-color);
+  transition: background var(--transition-snappy);
+}
+
+.row:hover::before,
+.row:focus-within::before {
+  background: var(--accent-mustard);
+}
+
+.meta {
+  margin-bottom: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  white-space: pre;
+  color: var(--text-muted);
+}
+
+.name {
+  font-size: clamp(1.3rem, 2.4vw, 1.6rem);
+}
+
+.name a {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.name a:hover {
+  color: var(--accent-vermilion);
+}
+
+.description {
+  max-width: 64ch;
+  margin-top: 8px;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+  list-style: none;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+@media (max-width: 700px) {
+  .row {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding-left: 18px;
+  }
+
+  .links {
+    flex-direction: row;
+  }
+}

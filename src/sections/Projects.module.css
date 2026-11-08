@@ -1,0 +1,8 @@
+.featured {
+  margin-bottom: 24px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+}

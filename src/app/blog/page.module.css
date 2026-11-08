@@ -1,0 +1,9 @@
+.feed {
+  max-width: 780px;
+}
+
+.empty {
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--text-secondary);
+}

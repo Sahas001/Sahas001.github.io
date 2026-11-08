@@ -1,28 +1,54 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import TerminalStatusBar from "@/components/TerminalStatusBar";
-import CommandPalette from "@/components/CommandPalette";
 import { Suspense } from "react";
-import { IBM_Plex_Mono } from "next/font/google";
+import { Chakra_Petch, IBM_Plex_Mono, Newsreader, Space_Mono } from "next/font/google";
+import SiteHeader from "@/components/SiteHeader";
+import SiteFooter, { socials } from "@/components/SiteFooter";
+import CommandPalette from "@/components/CommandPalette";
+import { getAllPosts } from "@/lib/posts";
+import { certifications, featuredCertification } from "@/data/certifications";
 
-const terminalMono = IBM_Plex_Mono({
+const spaceMono = Space_Mono({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-terminal-mono",
+  weight: ["400", "700"],
+  variable: "--font-space-mono",
 });
 
+const newsreader = Newsreader({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  variable: "--font-newsreader",
+});
+
+const plexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-plex-mono",
+});
+
+const chakra = Chakra_Petch({
+  subsets: ["latin"],
+  weight: ["700"],
+  variable: "--font-chakra",
+});
 
 export const metadata: Metadata = {
-  title: "Sahas Timilsina",
-  description: "Portfolio website of Sahas Timilsina – Computer Engineer passionate about music, classic cinema, Formula 1, and software craftsmanship.",
-  keywords: ["Sahas Timilsina", "Portfolio", "Computer Engineer", "Software Developer", "Full Stack", "Go Developer", "React Developer"],
+  title: {
+    template: "%s | Sahas Timilsina",
+    default: "Sahas Timilsina — Computer Engineer",
+  },
+  description: "Sahas Timilsina is a computer engineer building with React, Next.js and Go, and working toward AI and deep learning.",
+  keywords: ["Sahas Timilsina", "Portfolio", "Computer Engineer", "Software Developer", "Full Stack", "Go Developer", "React Developer", "Deep Learning", "Machine Learning"],
   authors: [{ name: "Sahas Timilsina", url: "https://sahastimilsina.com.np" }],
   creator: "Sahas Timilsina",
   publisher: "Sahas Timilsina",
   metadataBase: new URL("https://sahastimilsina.com.np"),
+  alternates: {
+    types: { "application/rss+xml": [{ url: "/rss.xml", title: "Sahas Timilsina — Blog" }] },
+  },
   openGraph: {
     title: "Sahas Timilsina",
-    description: "Portfolio website of Sahas Timilsina – Computer Engineer passionate about music, classic cinema, Formula 1, and software craftsmanship.",
+    description: "Sahas Timilsina is a computer engineer building with React, Next.js and Go, and working toward AI and deep learning.",
     url: "https://sahastimilsina.com.np",
     siteName: "Sahas Timilsina",
     locale: "en_US",
@@ -43,20 +69,51 @@ export const metadata: Metadata = {
   },
 };
 
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Only titles and slugs cross into the client-side command palette.
+  const postCommands = getAllPosts().map((p) => ({ label: p.title, href: `/blog/${p.id}` }));
+
+  // Structured data so search engines know who this site is about and what credentials they hold.
+  const personJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Sahas Timilsina",
+    url: "https://sahastimilsina.com.np",
+    jobTitle: "Computer Engineer",
+    email: "mailto:sahastimilsina@gmail.com",
+    alumniOf: { "@type": "CollegeOrUniversity", name: "Pokhara University" },
+    sameAs: [...socials.map((s) => s.href), "https://phasethru.dev"],
+    knowsAbout: ["Deep learning", "Machine learning", "Large language models", "React", "Next.js", "Go"],
+    hasCredential: [featuredCertification, ...certifications].map((c) => ({
+      "@type": "EducationalOccupationalCredential",
+      name: c.title,
+      credentialCategory: c.kind,
+      recognizedBy: { "@type": "Organization", name: c.issuer },
+      url: c.verifyUrl,
+    })),
+  };
+
   return (
-    <html lang="en" className={terminalMono.variable}>
+    <html
+      lang="en"
+      className={`${spaceMono.variable} ${newsreader.variable} ${plexMono.variable} ${chakra.variable}`}
+    >
       <body>
-        {children}
+        <script
+          type="application/ld+json"
+          // JSON.stringify output can't close the script tag once "<" is escaped.
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd).replace(/</g, "\\u003c") }}
+        />
         <Suspense fallback={null}>
-          <TerminalStatusBar />
+          <SiteHeader />
         </Suspense>
-        <CommandPalette />
+        <main style={{ paddingTop: "var(--header-height)", minHeight: "80vh" }}>{children}</main>
+        <SiteFooter />
+        <CommandPalette posts={postCommands} />
       </body>
     </html>
   );

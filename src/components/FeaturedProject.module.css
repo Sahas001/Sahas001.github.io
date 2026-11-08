@@ -1,0 +1,144 @@
+.card {
+  padding: clamp(24px, 4vw, 40px);
+  background: var(--bg-card);
+  border: 2px solid var(--ink);
+  box-shadow: var(--shadow-hard-lg);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--accent-vermilion);
+}
+
+.sep {
+  margin: 0 8px;
+  color: var(--border-strong);
+}
+
+.name {
+  margin-top: 8px;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  line-height: 1;
+}
+
+.name a {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.name a:hover {
+  color: var(--accent-vermilion);
+}
+
+.lede {
+  max-width: 52ch;
+  margin-top: 14px;
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+
+/* How the system works: four boxes joined by arrows. */
+.pipeline {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 34px;
+  margin: 32px 0 8px;
+  list-style: none;
+}
+
+.pipeline li {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 64px;
+  padding: 12px 14px;
+  font-family: var(--font-mono);
+  font-size: 0.84rem;
+  font-weight: 500;
+  line-height: 1.35;
+  background: var(--bg-primary);
+  border: 2px solid var(--ink);
+}
+
+.pipeline li:last-child {
+  background: var(--accent-vermilion);
+  color: #fffdf7;
+}
+
+.pipeline li + li::before {
+  content: "→";
+  position: absolute;
+  left: -30px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 26px;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--ink);
+}
+
+.highlights {
+  max-width: 70ch;
+  margin-top: 24px;
+  padding-left: 20px;
+  list-style: square;
+}
+
+.highlights li {
+  font-size: 1.04rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.highlights li + li {
+  margin-top: 8px;
+}
+
+.highlights li::marker {
+  color: var(--accent-vermilion);
+}
+
+.foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px dashed var(--border-strong);
+}
+
+.stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+}
+
+.links {
+  display: flex;
+  gap: 12px;
+}
+
+@media (max-width: 760px) {
+  .pipeline {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+
+  .pipeline li {
+    min-height: 0;
+  }
+
+  .pipeline li + li::before {
+    content: "↓";
+    left: 50%;
+    top: -24px;
+    transform: translateX(-50%);
+  }
+}

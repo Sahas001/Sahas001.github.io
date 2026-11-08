@@ -1,0 +1,312 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* ---------- Featured specialization ---------- */
+.featured {
+  position: relative;
+  padding: clamp(24px, 4vw, 36px);
+  padding-right: clamp(24px, 4vw, 36px);
+  background: var(--bg-card);
+  border: 2px solid var(--ink);
+  box-shadow: var(--shadow-hard);
+}
+
+.meta {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  padding-right: 140px;
+}
+
+.meta span {
+  color: var(--border-strong);
+  margin: 0 4px;
+}
+
+.featuredTitle {
+  margin-top: 10px;
+  padding-right: 140px;
+  font-size: clamp(1.7rem, 4vw, 2.6rem);
+  line-height: 1.1;
+}
+
+/* The rubber stamp hangs over the card's top-right edge. */
+.stamp {
+  position: absolute;
+  top: -26px;
+  right: 22px;
+  width: 132px;
+  height: 132px;
+  color: var(--accent-vermilion);
+  opacity: 0.92;
+  transform: rotate(-12deg);
+  transition: transform var(--transition-smooth), opacity var(--transition-snappy);
+  mix-blend-mode: multiply;
+}
+
+.stamp svg {
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255, 253, 247, 0.85) 62%, transparent 63%);
+  border-radius: 50%;
+}
+
+.stamp:hover,
+.stamp:focus-visible {
+  transform: rotate(-3deg) scale(1.05);
+  opacity: 1;
+}
+
+.stampRing {
+  font-family: var(--font-mono);
+  font-size: 9.6px;
+  font-weight: 600;
+  letter-spacing: 1.6px;
+  fill: currentColor;
+}
+
+.stampYear {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  fill: currentColor;
+}
+
+/* Five courses, in order: a real sequence, so they're numbered. */
+.track {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin-top: 28px;
+  list-style: none;
+  border-top: 2px solid var(--ink);
+}
+
+.track li {
+  position: relative;
+  padding: 16px 16px 4px 0;
+}
+
+.track li + li {
+  padding-left: 16px;
+  border-left: 1px dashed var(--border-strong);
+}
+
+.step {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  margin-bottom: 10px;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--bg-card);
+  background: var(--ink);
+}
+
+.track li:last-child .step {
+  background: var(--accent-vermilion);
+}
+
+.course {
+  display: block;
+  font-size: 0.98rem;
+  line-height: 1.4;
+  color: var(--text-secondary);
+}
+
+.featuredFoot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--border-strong);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+.featuredFoot a {
+  color: var(--accent-vermilion);
+  text-decoration: none;
+}
+
+.featuredFoot a:hover {
+  text-decoration: underline;
+}
+
+.serial {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+}
+
+/* ---------- Ticket stubs ---------- */
+.stubs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  list-style: none;
+}
+
+.stub {
+  display: flex;
+  background: var(--bg-card);
+  border: 2px solid var(--ink);
+  border-left: 6px solid var(--accent-vermilion);
+  box-shadow: var(--shadow-hard-sm);
+}
+
+.stubTeal {
+  border-left-color: var(--accent-teal);
+}
+
+.stubMain {
+  flex: 1;
+  min-width: 0;
+  padding: 18px 20px;
+}
+
+.stubKind {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--accent-vermilion);
+}
+
+.stubTeal .stubKind {
+  color: var(--accent-teal);
+}
+
+.stubTitle {
+  margin-top: 6px;
+  font-size: 1.02rem;
+  line-height: 1.3;
+}
+
+.stubIssuer {
+  margin-top: 8px;
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--text-secondary);
+}
+
+/* Tear-off side with a perforated edge and two punched notches. */
+.stubSide {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2px;
+  width: 7.5rem;
+  flex-shrink: 0;
+  padding: 16px 14px;
+  border-left: 2px dashed var(--border-strong);
+  background: var(--bg-secondary);
+}
+
+.stubSide::before,
+.stubSide::after {
+  content: "";
+  position: absolute;
+  left: -9px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--bg-primary);
+  border: 2px solid var(--ink);
+}
+
+.stubSide::before {
+  top: -10px;
+}
+
+.stubSide::after {
+  bottom: -10px;
+}
+
+.stubDate {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.05rem;
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+.stubYear {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.verify {
+  margin-top: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--accent-vermilion);
+  text-decoration: none;
+}
+
+.stubTeal .verify {
+  color: var(--accent-teal);
+}
+
+.verify:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .track {
+    grid-template-columns: 1fr;
+  }
+
+  .track li,
+  .track li + li {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    padding: 12px 0;
+    border-left: none;
+  }
+
+  .track li + li {
+    border-top: 1px dashed var(--border-strong);
+  }
+
+  .step {
+    flex-shrink: 0;
+    margin-bottom: 0;
+  }
+
+  .stubs {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .stamp {
+    width: 96px;
+    height: 96px;
+    top: -18px;
+    right: 10px;
+  }
+
+  .meta,
+  .featuredTitle {
+    padding-right: 92px;
+  }
+
+  .stubSide {
+    width: 6.5rem;
+  }
+}

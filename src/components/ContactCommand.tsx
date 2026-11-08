@@ -1,114 +1,123 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import styles from "./ContactCommand.module.css";
 
-const RESPONSES: Record<string, string | string[]> = {
-  contact: "Email: sahastimilsina@gmail.com",
-  github: "https://github.com/Sahas001",
-  linkedin: "https://linkedin.com/in/sahas001",
-  instagram: "https://instagram.com/sahastimilsina",
-  whoami: "sahas - computer engineer",
-  date: new Date().toString(),
+type Output = string | string[] | { href: string; text: string };
+
+const RESPONSES: Record<string, Output> = {
+  contact: { href: "mailto:sahastimilsina@gmail.com", text: "sahastimilsina@gmail.com" },
+  email: { href: "mailto:sahastimilsina@gmail.com", text: "sahastimilsina@gmail.com" },
+  github: { href: "https://github.com/Sahas001", text: "github.com/Sahas001" },
+  linkedin: { href: "https://linkedin.com/in/sahas001", text: "linkedin.com/in/sahas001" },
+  instagram: { href: "https://instagram.com/sahastimilsina", text: "instagram.com/sahastimilsina" },
+  blog: { href: "/blog", text: "~/blog (opens the blog)" },
+  projects: { href: "/?tab=projects", text: "~/projects (opens the project list)" },
+  phasethru: { href: "https://phasethru.dev", text: "phasethru.dev" },
+  whoami: "sahas — computer engineer",
   ls: "about.md  projects/  blog/  contact.txt",
   help: [
-    "Available commands:",
-    "  contact   - Get contact info",
-    "  github    - View GitHub profile",
-    "  linkedin  - View LinkedIn profile",
-    "  instagram - View Instagram profile",
-    "  whoami    - Print current user",
-    "  date      - Print current date and time",
-    "  ls        - List directory contents",
-    "  echo      - Print text (e.g. echo hello)",
-    "  clear     - Clear terminal history"
-  ]
+    "contact    email address",
+    "github     GitHub profile",
+    "linkedin   LinkedIn profile",
+    "blog       read the blog",
+    "projects   see what I've built",
+    "phasethru  my other blog",
+    "whoami     who is this",
+    "date       current date and time",
+    "echo       print text",
+    "clear      clear the screen",
+  ],
 };
+
+type Entry = { cmd: string; output: Output };
+
+const INITIAL: Entry[] = [
+  { cmd: "whoami", output: RESPONSES.whoami },
+  { cmd: "ls", output: RESPONSES.ls },
+  { cmd: "contact", output: RESPONSES.contact },
+];
 
 export default function ContactCommand() {
   const [value, setValue] = useState("");
-  const [history, setHistory] = useState<{ cmd: string; output: string | string[] }[]>([]);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const [history, setHistory] = useState<Entry[]>(INITIAL);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    if (history.length > 0 && containerRef.current) {
-      containerRef.current.scrollTop = containerRef.current.scrollHeight;
-    }
+    const el = scrollRef.current;
+    if (el) el.scrollTop = el.scrollHeight;
   }, [history]);
 
   function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    const cmdStr = value.trim();
-    if (!cmdStr) return;
-    
-    const key = cmdStr.toLowerCase().split(" ")[0];
-    
+    const cmd = value.trim();
+    if (!cmd) return;
+    const key = cmd.toLowerCase().split(/\s+/)[0];
+    setValue("");
+
     if (key === "clear") {
       setHistory([]);
-      setValue("");
       return;
     }
-    
-    let output: string | string[] = "command not found: " + key;
-    
-    if (key === "echo") {
-      output = cmdStr.substring(5);
-    } else if (RESPONSES[key]) {
-      output = RESPONSES[key];
-    }
-    
-    setHistory(prev => [...prev, { cmd: cmdStr, output }]);
-    setValue("");
+
+    let output: Output = `command not found: ${key}. Try "help".`;
+    if (key === "echo") output = cmd.slice(5);
+    else if (key === "date") output = new Date().toString();
+    else if (RESPONSES[key]) output = RESPONSES[key];
+
+    setHistory((prev) => [...prev, { cmd, output }]);
   }
 
-  function renderOutput(text: string | string[]) {
-    if (Array.isArray(text)) {
-      return (
-        <div className="flex flex-col gap-1">
-          {text.map((line, i) => (
-            <div key={i} className="whitespace-pre">{line}</div>
-          ))}
+  function renderOutput(out: Output) {
+    if (Array.isArray(out)) {
+      return out.map((line) => (
+        <div key={line} className={styles.pre}>
+          {line}
         </div>
-      );
+      ));
     }
-    
-    if (text.startsWith("http")) {
-      return (
-        <a href={text} target="_blank" rel="noopener noreferrer" className="text-[color:var(--accent)] hover:underline">
-          {text}
+    if (typeof out === "object") {
+      return out.href.startsWith("/") ? (
+        <Link href={out.href} className={styles.link}>{out.text}</Link>
+      ) : (
+        <a
+          href={out.href}
+          className={styles.link}
+          {...(out.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+        >
+          {out.text}
         </a>
       );
     }
-    if (text.includes("Email:")) {
-      const email = text.replace("Email: ", "");
-      return (
-        <>
-          Email:{" "}
-          <a href={`mailto:${email}`} className="text-[color:var(--accent)] hover:underline">
-            {email}
-          </a>
-        </>
-      );
-    }
-    return text;
+    return out;
   }
 
   return (
-    <div ref={containerRef} className="terminal-command font-mono max-h-64 overflow-y-auto pr-2 scrollbar-custom">
-      {history.map((item, idx) => (
-        <div key={idx} className="mb-4">
-          <div className="terminal-command-row mb-2">
-            <span className="text-[color:var(--accent)]">~$</span>
-            <span className="text-[color:var(--p)]">{item.cmd}</span>
+    <div className={styles.terminal} onClick={() => inputRef.current?.focus({ preventScroll: true })}>
+      <div ref={scrollRef} className={styles.scroll} aria-live="polite">
+        {history.map((item, idx) => (
+          <div key={idx} className={styles.entry}>
+            <div>
+              <span className={styles.prompt}>~$</span> {item.cmd}
+            </div>
+            <div className={styles.output}>{renderOutput(item.output)}</div>
           </div>
-          <div className="terminal-command-output">{renderOutput(item.output)}</div>
-        </div>
-      ))}
-      <form onSubmit={onSubmit} className="terminal-command-row">
-        <span className="text-[color:var(--accent)]">~$</span>
+        ))}
+      </div>
+      <form onSubmit={onSubmit} className={styles.row}>
+        <label htmlFor="term-input" className={styles.prompt}>
+          ~$
+        </label>
         <input
-          className="terminal-command-input"
-          placeholder="help | contact | whoami | clear"
-          style={{ caretColor: "var(--accent)" }}
+          id="term-input"
+          ref={inputRef}
+          className={styles.input}
+          placeholder="type help"
+          autoComplete="off"
+          autoCapitalize="off"
+          spellCheck={false}
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />

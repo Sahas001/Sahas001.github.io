@@ -1,0 +1,173 @@
+.postHeader {
+  max-width: 860px;
+  margin: 32px auto 0;
+  padding: 0 clamp(16px, 4vw, 40px);
+}
+
+.headerCard {
+  padding: clamp(24px, 4vw, 36px);
+  border: 2px solid var(--ink);
+  background: var(--bg-card);
+  box-shadow: var(--shadow-hard);
+}
+
+.backLink {
+  display: inline-block;
+  margin-bottom: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.backLink:hover {
+  color: var(--accent-vermilion);
+}
+
+.title {
+  margin: 12px 0 0;
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1.1;
+}
+
+.dek {
+  max-width: 60ch;
+  margin-top: 14px;
+  font-size: 1.15rem;
+  font-style: italic;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+
+.metaRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--accent-vermilion);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.author {
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.metaDot {
+  color: var(--border-strong);
+}
+
+.tagsRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.toc {
+  margin-top: 32px;
+}
+
+.toc details {
+  max-width: 70ch;
+  padding: 14px 20px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-strong);
+  border-left: 4px solid var(--accent-mustard);
+}
+
+.toc summary {
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.toc ol {
+  margin-top: 10px;
+  padding-left: 22px;
+  columns: 2;
+  column-gap: 32px;
+}
+
+.toc li {
+  break-inside: avoid;
+  padding: 3px 0;
+  font-size: 1rem;
+}
+
+.toc li::marker {
+  font-family: var(--font-mono);
+  font-size: 0.8em;
+  color: var(--accent-mustard);
+}
+
+.toc a {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.toc a:hover {
+  color: var(--accent-vermilion);
+  text-decoration: underline;
+}
+
+@media (max-width: 560px) {
+  .toc ol {
+    columns: 1;
+  }
+}
+
+.related {
+  margin-top: 64px;
+  padding-top: 48px;
+  border-top: 1px solid var(--border-color);
+}
+
+.relatedGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 24px;
+}
+
+@media (max-width: 560px) {
+  /* The meta line wraps on phones; separators would dangle at line ends. */
+  .metaDot {
+    display: none;
+  }
+
+  .metaRow {
+    column-gap: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .postHeader {
+    margin-top: 20px;
+  }
+
+  .relatedGrid {
+    grid-template-columns: 1fr;
+  }
+}

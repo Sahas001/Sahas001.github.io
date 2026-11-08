@@ -2,6 +2,8 @@
 title: Understanding MapReduce
 date: "2026-05-23"
 description: And how it works as a programming model for processing on Large Clusters.
+category: Tech
+featured: true
 tags:
   - programming
   - distributed-systems

@@ -1,0 +1,88 @@
+.searchRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 32px;
+  padding: 0 14px;
+  height: 48px;
+  background: var(--bg-card);
+  border: 2px solid var(--ink);
+  box-shadow: var(--shadow-hard-sm);
+  transition: box-shadow var(--transition-snappy);
+}
+
+.searchRow:focus-within {
+  box-shadow: var(--shadow-hard);
+}
+
+.searchPrompt {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--accent-vermilion);
+  white-space: nowrap;
+}
+
+.searchInput {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--ink);
+}
+
+.searchInput::placeholder {
+  color: var(--text-muted);
+}
+
+.feed {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+}
+
+/* The cover story sits flush under the search box. */
+.searchRow + * {
+  margin-top: 0;
+}
+
+.searchRow + .feed {
+  margin-top: 0;
+}
+
+.sectionHeader {
+  margin-bottom: 24px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-color);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.feedList {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.empty {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+}
+
+.empty button {
+  padding: 0;
+  background: none;
+  border: none;
+  font: inherit;
+  color: var(--accent-vermilion);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
