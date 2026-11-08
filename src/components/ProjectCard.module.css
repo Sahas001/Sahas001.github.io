@@ -1,28 +1,10 @@
 .row {
-  position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 32px;
   align-items: center;
-  padding: 32px 0 32px 24px;
-  border-bottom: 1px dashed var(--border-strong);
-}
-
-/* Mustard bar marks the row under the pointer or keyboard focus. */
-.row::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 32px;
-  bottom: 32px;
-  width: 4px;
-  background: var(--border-color);
-  transition: background var(--transition-snappy);
-}
-
-.row:hover::before,
-.row:focus-within::before {
-  background: var(--accent-mustard);
+  padding: 32px 0;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .meta {
@@ -72,7 +54,6 @@
   .row {
     grid-template-columns: 1fr;
     gap: 20px;
-    padding-left: 18px;
   }
 
   .links {

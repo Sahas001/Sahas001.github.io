@@ -70,7 +70,7 @@
   align-items: center;
   margin-top: 14px;
   padding-top: 14px;
-  border-top: 1px dashed var(--border-strong);
+  border-top: 1px solid var(--border-color);
 }
 
 .readBtn {

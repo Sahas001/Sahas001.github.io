@@ -1,5 +1,7 @@
 .featured {
-  margin-bottom: 24px;
+  padding-bottom: 48px;
+  margin-bottom: 8px;
+  border-bottom: 2px solid var(--ink);
 }
 
 .list {

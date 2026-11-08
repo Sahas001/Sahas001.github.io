@@ -66,23 +66,15 @@
   margin-top: clamp(64px, 9vw, 104px);
 }
 
-/* Stack: a spec plate, columns split by ink rules */
+/* Stack: plain columns of text */
 .stack {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 2px;
-  border: 2px solid var(--ink);
-  background: var(--ink);
-  box-shadow: var(--shadow-hard);
-}
-
-.stackCol {
-  padding: 20px 22px 22px;
-  background: var(--bg-card);
+  gap: 24px;
 }
 
 .stackCol dt {
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   font-family: var(--font-mono);
   font-size: 0.78rem;
   font-weight: 600;
@@ -102,7 +94,7 @@
 }
 
 .posts li + li {
-  border-top: 1px dashed var(--border-strong);
+  border-top: 1px solid var(--border-color);
 }
 
 .postRow {
@@ -154,54 +146,19 @@
   color: var(--text-secondary);
 }
 
-/* Phasethru strip */
+/* Phasethru: one line, no box */
 .phasethru {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  padding: 22px 26px;
-  border: 2px solid var(--ink);
-  background: var(--bg-secondary);
-  box-shadow: var(--shadow-hard);
-  color: var(--ink);
-  text-decoration: none;
-  transition: transform var(--transition-snappy), box-shadow var(--transition-snappy);
-}
-
-.phasethru:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: var(--shadow-hard-hover);
-  color: var(--ink);
-}
-
-.phasethru img {
-  flex-shrink: 0;
-}
-
-.phasethruText {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  gap: 2px;
-}
-
-.phasethruTitle {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 1.05rem;
-}
-
-.phasethruSub {
-  font-size: 1rem;
+  margin-top: 56px;
+  font-size: 1.1rem;
   font-style: italic;
   color: var(--text-secondary);
 }
 
-.phasethruCta {
+.phasethru a {
   font-family: var(--font-mono);
-  font-size: 0.82rem;
+  font-size: 0.9rem;
+  font-style: normal;
   color: var(--accent-vermilion);
-  white-space: nowrap;
 }
 
 /* ---------- Responsive ---------- */
@@ -212,10 +169,7 @@
 
   .stack {
     grid-template-columns: repeat(2, 1fr);
-  }
-
-  .stackCol:last-child:nth-child(odd) {
-    grid-column: span 2;
+    row-gap: 28px;
   }
 }
 
@@ -229,12 +183,4 @@
     display: none;
   }
 
-  .phasethru {
-    flex-wrap: wrap;
-    padding: 18px;
-  }
-
-  .phasethruCta {
-    width: 100%;
-  }
 }

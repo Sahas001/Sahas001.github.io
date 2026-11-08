@@ -62,7 +62,7 @@ export default function Certifications({
       <article className={styles.featured}>
         <Stamp cert={featured} />
         <p className={styles.meta}>
-          {featured.issuer} <span>/</span> {featured.kind} <span>/</span> {fd.top}, {fd.bottom}
+          {featured.kind} from {featured.issuer}, {fd.top}, {fd.bottom}
         </p>
         <h3 className={styles.featuredTitle}>{featured.title}</h3>
 
@@ -79,44 +79,41 @@ export default function Certifications({
           </ol>
         )}
 
-        <div className={styles.featuredFoot}>
-          <span className={styles.serial}>№ {serial(featured.credentialId)}</span>
+        <p className={styles.featuredFoot}>
           <a href={featured.verifyUrl} target="_blank" rel="noopener noreferrer">
             Verify on deeplearning.ai ↗
           </a>
-        </div>
+          <span className={styles.serial}>№ {serial(featured.credentialId)}</span>
+        </p>
       </article>
 
-      <ul className={styles.stubs}>
+      <ul className={styles.list}>
         {others.map((cert) => {
           const d = monthDay(cert.date);
-          const isRegistration = cert.kind === "Professional registration";
           return (
-            <li key={cert.verifyUrl} className={`${styles.stub} ${isRegistration ? styles.stubTeal : ""}`}>
-              <div className={styles.stubMain}>
-                <p className={styles.stubKind}>{cert.kind}</p>
-                <h3 className={styles.stubTitle}>{cert.title}</h3>
-                <p className={styles.stubIssuer}>
-                  {cert.issuer}
-                  {cert.topics && <span> · {cert.topics.join(", ")}</span>}
-                </p>
-              </div>
-              <div className={styles.stubSide}>
-                <span className={styles.stubDate}>{d.top}</span>
-                {d.bottom && <span className={styles.stubYear}>{d.bottom}</span>}
-                <span className={styles.serial}>
-                  {isRegistration ? "Reg." : "№"} {serial(cert.credentialId)}
+            <li key={cert.verifyUrl} className={styles.row}>
+              <span className={styles.date}>
+                {d.top}
+                {d.bottom && `, ${d.bottom}`}
+              </span>
+              <span className={styles.body}>
+                <span className={styles.title}>{cert.title}</span>
+                <span className={styles.issuer}>
+                  {cert.kind}, {cert.issuer}
+                  {cert.kind === "Professional registration" && cert.credentialId
+                    ? `, no. ${cert.credentialId}`
+                    : ""}
                 </span>
-                <a
-                  href={cert.verifyUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.verify}
-                  aria-label={`Verify ${cert.title}`}
-                >
-                  Verify ↗
-                </a>
-              </div>
+              </span>
+              <a
+                href={cert.verifyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.verify}
+                aria-label={`Verify ${cert.title}`}
+              >
+                Verify ↗
+              </a>
             </li>
           );
         })}
