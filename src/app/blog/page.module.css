@@ -1,16 +1,9 @@
-.masthead {
-  padding: clamp(40px, 6vw, 72px) 0 28px;
+.feed {
+  max-width: 780px;
 }
 
-.title {
-  font-size: clamp(2.4rem, 6vw, 4rem);
-  line-height: 1;
-}
-
-.intro {
-  max-width: 56ch;
-  margin-top: 14px;
-  font-size: 1.15rem;
+.empty {
+  font-size: 1.1rem;
   font-style: italic;
   color: var(--text-secondary);
 }

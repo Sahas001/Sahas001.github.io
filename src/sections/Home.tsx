@@ -66,7 +66,7 @@ export default function Home({ latest }: { latest: BlogPostSummary[] }) {
       <section className={styles.block} aria-labelledby="featured-heading">
         <div className="section-heading">
           <h2 id="featured-heading">Featured project</h2>
-          <Link href="/?tab=projects">All projects ↗</Link>
+          <Link href="/?tab=projects">All projects →</Link>
         </div>
         <FeaturedProject project={featuredProject} />
       </section>
@@ -99,7 +99,7 @@ export default function Home({ latest }: { latest: BlogPostSummary[] }) {
         <section className={styles.block} aria-labelledby="writing-heading">
           <div className="section-heading">
             <h2 id="writing-heading">Latest writing</h2>
-            <Link href="/blog">All posts ↗</Link>
+            <Link href="/blog">All posts →</Link>
           </div>
           <ol className={styles.posts}>
             {latest.map((post) => (

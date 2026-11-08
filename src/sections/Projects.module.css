@@ -1,24 +1,5 @@
-.header {
-  padding: clamp(40px, 6vw, 72px) 0 28px;
-  border-bottom: 2px solid var(--ink);
-  margin-bottom: 8px;
-}
-
-.title {
-  font-size: clamp(2.4rem, 6vw, 4rem);
-  line-height: 1;
-}
-
-.intro {
-  max-width: 52ch;
-  margin-top: 14px;
-  font-size: 1.15rem;
-  font-style: italic;
-  color: var(--text-secondary);
-}
-
 .featured {
-  margin: 32px 0 24px;
+  margin-bottom: 24px;
 }
 
 .list {

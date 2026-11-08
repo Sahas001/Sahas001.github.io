@@ -151,6 +151,17 @@
   margin-top: 24px;
 }
 
+@media (max-width: 560px) {
+  /* The meta line wraps on phones; separators would dangle at line ends. */
+  .metaDot {
+    display: none;
+  }
+
+  .metaRow {
+    column-gap: 14px;
+  }
+}
+
 @media (max-width: 768px) {
   .postHeader {
     margin-top: 20px;

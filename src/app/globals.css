@@ -296,38 +296,28 @@ a.tag-badge:hover {
   color: var(--accent-vermilion);
 }
 
-/* Floating status chip (bottom right) */
-.status-chip {
-  position: fixed;
-  right: 1rem;
-  bottom: 1rem;
-  z-index: 40;
+/* Status line in the footer's bottom bar */
+.status-line {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.5rem;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--text-secondary);
-  background: var(--bg-card);
-  border: 2px solid var(--ink);
-  box-shadow: var(--shadow-hard-sm);
-  padding: 0.3rem 0.65rem;
 }
 
-.status-chip b {
-  color: var(--accent-teal);
+.status-line b {
+  color: var(--accent-mustard);
   font-weight: 600;
 }
 
-.status-chip kbd {
-  border: 1px solid var(--border-strong);
+.status-line kbd {
   padding: 0 4px;
   font-size: 0.68rem;
-  background: var(--bg-primary);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #c5c9d0;
 }
 
-.status-chip .sep {
-  color: var(--border-strong);
+.status-line .sep {
+  color: rgba(255, 255, 255, 0.25);
 }
 
 @keyframes status-pulse {
@@ -340,12 +330,8 @@ a.tag-badge:hover {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--accent-teal);
+  background: #5e9c90;
   animation: status-pulse 2s ease-in-out infinite;
-}
-
-@media (max-width: 640px) {
-  .status-chip { display: none; }
 }
 
 /* Blinking block cursor */

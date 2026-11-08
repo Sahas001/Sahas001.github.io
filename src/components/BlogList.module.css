@@ -45,6 +45,11 @@
   margin-top: 40px;
 }
 
+/* The cover story sits flush under the search box. */
+.searchRow + * {
+  margin-top: 0;
+}
+
 .searchRow + .feed {
   margin-top: 0;
 }

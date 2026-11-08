@@ -4,7 +4,6 @@ import { Suspense } from "react";
 import { Chakra_Petch, IBM_Plex_Mono, Newsreader, Space_Mono } from "next/font/google";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter, { socials } from "@/components/SiteFooter";
-import TerminalStatusBar from "@/components/TerminalStatusBar";
 import CommandPalette from "@/components/CommandPalette";
 import { getAllPosts } from "@/lib/posts";
 import { certifications, featuredCertification } from "@/data/certifications";
@@ -114,9 +113,6 @@ export default function RootLayout({
         </Suspense>
         <main style={{ paddingTop: "var(--header-height)", minHeight: "80vh" }}>{children}</main>
         <SiteFooter />
-        <Suspense fallback={null}>
-          <TerminalStatusBar />
-        </Suspense>
         <CommandPalette posts={postCommands} />
       </body>
     </html>

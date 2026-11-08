@@ -3,7 +3,7 @@ import TerminalWindow from "@/components/TerminalWindow";
 
 export default function NotFound() {
   return (
-    <div className="container-read" style={{ paddingTop: "clamp(48px, 8vw, 96px)" }}>
+    <div className="container-wide" style={{ paddingTop: "clamp(48px, 8vw, 96px)" }}>
       <h1 style={{ fontSize: "clamp(3rem, 10vw, 6rem)", lineHeight: 1 }}>404</h1>
       <p style={{ marginTop: 12, fontSize: "1.2rem", fontStyle: "italic", color: "var(--text-secondary)" }}>
         This page doesn&apos;t exist. It may have moved, or the link has a typo.

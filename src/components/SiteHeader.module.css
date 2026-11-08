@@ -16,8 +16,56 @@
 .logo {
   display: flex;
   align-items: center;
+  gap: 14px;
+  min-width: 0;
   text-decoration: none;
-  flex-shrink: 0;
+}
+
+/* The live path beside the mark, like a shell prompt. */
+.path {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  min-width: 0;
+  max-width: 260px;
+  font-family: var(--font-mono);
+  font-size: 0.86rem;
+  font-weight: 500;
+}
+
+.pathText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--ink);
+}
+
+.pathPrompt {
+  color: var(--accent-vermilion);
+  font-weight: 600;
+}
+
+.logo:hover .pathText {
+  color: var(--accent-vermilion);
+}
+
+/* Keep clear of the centred nav; on phones the nav folds away so the path can grow. */
+@media (max-width: 1100px) {
+  .path {
+    max-width: 170px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .path {
+    max-width: 110px;
+  }
+}
+
+@media (max-width: 860px) {
+  .path {
+    max-width: calc(100vw - 200px);
+  }
 }
 
 .nav {

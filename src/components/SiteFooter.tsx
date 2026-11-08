@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { Suspense } from "react";
+import TerminalStatusBar from "./TerminalStatusBar";
 import Wordmark from "./Wordmark";
 import styles from "./SiteFooter.module.css";
 
@@ -48,9 +50,9 @@ export default function SiteFooter() {
 
       <div className={styles.bottomBar}>
         <span>© {new Date().getFullYear()} Sahas Timilsina</span>
-        <span>
-          <span className={styles.prompt}>~$</span> exit 0
-        </span>
+        <Suspense fallback={null}>
+          <TerminalStatusBar />
+        </Suspense>
       </div>
     </footer>
   );

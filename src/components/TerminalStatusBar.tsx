@@ -19,7 +19,7 @@ export default function TerminalStatusBar() {
   const uptime = `${pad(Math.floor(elapsed / 3600))}:${pad(Math.floor((elapsed % 3600) / 60))}:${pad(elapsed % 60)}`;
 
   return (
-    <div className="status-chip" aria-hidden="true">
+    <div className="status-line" aria-hidden="true">
       <span className="status-pulse" />
       <b>{section}</b>
       <span className="sep">/</span>

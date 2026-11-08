@@ -1,0 +1,19 @@
+.header {
+  padding: clamp(40px, 6vw, 72px) 0 28px;
+  margin-bottom: 36px;
+  border-bottom: 2px solid var(--ink);
+}
+
+.title {
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  line-height: 1;
+}
+
+.intro {
+  max-width: 56ch;
+  margin-top: 14px;
+  font-size: 1.15rem;
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}

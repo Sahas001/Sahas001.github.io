@@ -1,4 +1,5 @@
 import TerminalWindow from "@/components/TerminalWindow";
+import PageHeader from "@/components/PageHeader";
 import styles from "./About.module.css";
 
 const spec = [
@@ -14,9 +15,9 @@ const spec = [
 export default function About() {
   return (
     <div className="container-wide">
+      <PageHeader title="About">Who I am, what I work on, and where I&apos;m heading.</PageHeader>
       <div className={styles.grid}>
         <article className={styles.prose}>
-          <h1 className={styles.title}>About</h1>
           <p>
             I got into programming because I wanted to build things I could actually use, and it
             stuck. I like writing code that does what it&apos;s supposed to without being clever

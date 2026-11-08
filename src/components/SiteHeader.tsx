@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState, useSyncExternalStore } from "react";
-import Wordmark from "./Wordmark";
+import LogoMark from "./LogoMark";
 import styles from "./SiteHeader.module.css";
 
 export const navItems = [
@@ -28,6 +28,14 @@ export default function SiteHeader() {
   const hint = useSyncExternalStore(noopSubscribe, () => (isMac() ? "⌘K" : "Ctrl K"), () => "Ctrl K");
 
   const tab = params.get("tab");
+
+  // A terminal path for the current page: ~, ~/projects, ~/blog/some-post …
+  const path =
+    pathname === "/"
+      ? tab && tab !== "home" && navItems.some((i) => i.name === tab)
+        ? `~/${tab}`
+        : "~"
+      : `~${pathname}`;
 
   // The menu remembers which route it was opened on, so navigating closes it.
   const routeKey = `${pathname}?${tab ?? ""}`;
@@ -64,7 +72,11 @@ export default function SiteHeader() {
   return (
     <header className={styles.header}>
       <Link href="/" className={styles.logo} aria-label="Sahas Timilsina, home">
-        <Wordmark />
+        <LogoMark />
+        <span className={styles.path} aria-hidden="true">
+          <span className={styles.pathText}>{path}</span>
+          <span className={styles.pathPrompt}>$</span>
+        </span>
       </Link>
 
       <nav aria-label="Primary" className={`${styles.nav} ${menuOpen ? styles.navOpen : ""}`}>
