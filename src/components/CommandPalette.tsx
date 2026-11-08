@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState, useCallback } from "react";
+import { useEffect, useMemo, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 
 type Command = {
@@ -23,7 +23,8 @@ export default function CommandPalette({ posts = [] }: { posts?: { label: string
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(0);
   const [query, setQuery] = useState("");
-  const triggeringElementRef = useRef<HTMLElement | null>(null);
+  // Where focus goes back to when the palette closes.
+  const [returnFocusTo, setReturnFocusTo] = useState<HTMLElement | null>(null);
 
   const commands = useMemo(
     () => [...PAGES, ...posts.map((p) => ({ ...p, kind: "post" }))],
@@ -40,11 +41,11 @@ export default function CommandPalette({ posts = [] }: { posts?: { label: string
     setOpen(false);
     setQuery("");
     setActive(0);
-    triggeringElementRef.current?.focus();
-  }, []);
+    returnFocusTo?.focus();
+  }, [returnFocusTo]);
 
   const handleOpen = useCallback(() => {
-    triggeringElementRef.current = document.activeElement as HTMLElement | null;
+    setReturnFocusTo(document.activeElement as HTMLElement | null);
     setOpen(true);
   }, []);
 
