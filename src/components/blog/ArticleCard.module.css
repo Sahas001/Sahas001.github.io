@@ -31,6 +31,13 @@
   color: var(--accent-vermilion);
 }
 
+.source {
+  padding: 1px 8px;
+  border: 1px solid var(--accent-teal);
+  color: var(--accent-teal);
+  background: rgba(59, 107, 99, 0.08);
+}
+
 .sep {
   color: var(--border-strong);
 }

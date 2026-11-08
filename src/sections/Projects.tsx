@@ -1,5 +1,6 @@
 import ProjectCard from "@/components/ProjectCard";
-import { projects } from "@/data/projects";
+import FeaturedProject from "@/components/FeaturedProject";
+import { featuredProject, projects } from "@/data/projects";
 import styles from "./Projects.module.css";
 
 export default function Projects() {
@@ -11,6 +12,9 @@ export default function Projects() {
           Things I&apos;ve built to learn something or scratch an itch. Everything here is open source.
         </p>
       </header>
+      <div className={styles.featured}>
+        <FeaturedProject project={featuredProject} />
+      </div>
       <div className={styles.list}>
         {projects.map((project) => (
           <ProjectCard key={project.name} project={project} />

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import Wordmark from "./Wordmark";
 import styles from "./SiteHeader.module.css";
 
@@ -13,6 +13,9 @@ export const navItems = [
   { name: "blog", label: "Blog", href: "/blog" },
 ];
 
+const noopSubscribe = () => () => {};
+const isMac = () => navigator.platform.toLowerCase().includes("mac");
+
 export function openCommandPalette() {
   window.dispatchEvent(new Event("open-command-palette"));
 }
@@ -21,24 +24,20 @@ export default function SiteHeader() {
   const pathname = usePathname();
   const params = useSearchParams();
   const router = useRouter();
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [hint, setHint] = useState("Ctrl K");
+  // Ctrl K on the server and non-Mac clients, ⌘K on Macs.
+  const hint = useSyncExternalStore(noopSubscribe, () => (isMac() ? "⌘K" : "Ctrl K"), () => "Ctrl K");
 
   const tab = params.get("tab");
+
+  // The menu remembers which route it was opened on, so navigating closes it.
+  const routeKey = `${pathname}?${tab ?? ""}`;
+  const [menuOpenOn, setMenuOpenOn] = useState<string | null>(null);
+  const menuOpen = menuOpenOn === routeKey;
   const active = pathname.startsWith("/blog")
     ? "blog"
     : pathname === "/"
       ? navItems.some((i) => i.name === tab) ? tab : "home"
       : null;
-
-  useEffect(() => {
-    if (navigator.platform.toLowerCase().includes("mac")) setHint("⌘K");
-  }, []);
-
-  // Close the mobile menu whenever the route changes.
-  useEffect(() => {
-    setMenuOpen(false);
-  }, [pathname, tab]);
 
   // h / l cycles through the sections, vim style.
   useEffect(() => {
@@ -94,7 +93,7 @@ export default function SiteHeader() {
         <button
           type="button"
           className={styles.menuBtn}
-          onClick={() => setMenuOpen((o) => !o)}
+          onClick={() => setMenuOpenOn(menuOpen ? null : routeKey)}
           aria-expanded={menuOpen}
           aria-label={menuOpen ? "Close menu" : "Open menu"}
         >

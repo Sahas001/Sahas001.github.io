@@ -2,6 +2,7 @@ import type { BlogPost, BlogPostSummary } from "@/types/blogs";
 import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
+import { getPhasethruPosts } from "./phasethru";
 
 const postsDir = path.join(process.cwd(), "src/_posts");
 
@@ -45,11 +46,28 @@ export function getAllPosts(): BlogPostSummary[] {
 	const posts = getPostSlugs()
 		.map((slug) => getPostBySlug(slug))
 		.filter((p): p is BlogPost => p !== null)
-		.map(({ content: _content, ...summary }) => summary);
+		.map((post) => {
+			const summary: Partial<BlogPost> = { ...post };
+			delete summary.content;
+			return summary as BlogPostSummary;
+		});
 	posts.sort((a, b) => {
 		const timeA = Date.parse(a.date || "");
 		const timeB = Date.parse(b.date || "");
 		return (isNaN(timeB) ? 0 : timeB) - (isNaN(timeA) ? 0 : timeA);
 	});
 	return posts;
+}
+
+/**
+ * Local posts plus Phasethru posts, newest first. A Phasethru post with
+ * the same slug as a local one is skipped, so cross-posts appear once.
+ */
+export async function getAllWriting(): Promise<BlogPostSummary[]> {
+	const local = getAllPosts();
+	const localIds = new Set(local.map((p) => p.id));
+	const remote = (await getPhasethruPosts()).filter((p) => !localIds.has(p.id));
+	return [...local, ...remote].sort(
+		(a, b) => (Date.parse(b.date) || 0) - (Date.parse(a.date) || 0),
+	);
 }

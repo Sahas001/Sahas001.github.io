@@ -17,6 +17,10 @@
   color: var(--text-secondary);
 }
 
+.featured {
+  margin: 32px 0 24px;
+}
+
 .list {
   display: flex;
   flex-direction: column;

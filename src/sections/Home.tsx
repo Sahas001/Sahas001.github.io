@@ -5,8 +5,11 @@ import TerminalWindow from "@/components/TerminalWindow";
 import ContactCommand from "@/components/ContactCommand";
 import { socials } from "@/components/SiteFooter";
 import Certifications from "@/components/Certifications";
+import FeaturedProject from "@/components/FeaturedProject";
+import { featuredProject } from "@/data/projects";
 import { certifications, featuredCertification } from "@/data/certifications";
 import { formatDate } from "@/lib/format";
+import PostLink from "@/components/blog/PostLink";
 import type { BlogPostSummary } from "@/types/blogs";
 import styles from "./Home.module.css";
 
@@ -60,6 +63,22 @@ export default function Home({ latest }: { latest: BlogPostSummary[] }) {
         </div>
       </section>
 
+      <section className={styles.block} aria-labelledby="featured-heading">
+        <div className="section-heading">
+          <h2 id="featured-heading">Featured project</h2>
+          <Link href="/?tab=projects">All projects ↗</Link>
+        </div>
+        <FeaturedProject project={featuredProject} />
+      </section>
+
+      <section className={styles.block} aria-labelledby="certs-heading">
+        <div className="section-heading">
+          <h2 id="certs-heading">Certifications</h2>
+          <span>Each one links to its verification page</span>
+        </div>
+        <Certifications featured={featuredCertification} others={certifications} />
+      </section>
+
       <section className={styles.block} aria-labelledby="stack-heading">
         <div className="section-heading">
           <h2 id="stack-heading">What I work with</h2>
@@ -76,14 +95,6 @@ export default function Home({ latest }: { latest: BlogPostSummary[] }) {
         </dl>
       </section>
 
-      <section className={styles.block} aria-labelledby="certs-heading">
-        <div className="section-heading">
-          <h2 id="certs-heading">Certifications</h2>
-          <span>Each one links to its verification page</span>
-        </div>
-        <Certifications featured={featuredCertification} others={certifications} />
-      </section>
-
       {latest.length > 0 && (
         <section className={styles.block} aria-labelledby="writing-heading">
           <div className="section-heading">
@@ -93,7 +104,7 @@ export default function Home({ latest }: { latest: BlogPostSummary[] }) {
           <ol className={styles.posts}>
             {latest.map((post) => (
               <li key={post.id}>
-                <Link href={`/blog/${post.id}`} className={styles.postRow}>
+                <PostLink post={post} className={styles.postRow}>
                   <time dateTime={post.date} className={styles.postDate}>
                     {formatDate(post.date)}
                   </time>
@@ -101,8 +112,10 @@ export default function Home({ latest }: { latest: BlogPostSummary[] }) {
                     <span className={styles.postTitle}>{post.title}</span>
                     <span className={styles.postExcerpt}>{post.description}</span>
                   </span>
-                  <span className={styles.postMeta}>{post.readingTime}</span>
-                </Link>
+                  <span className={styles.postMeta}>
+                    {post.source ? `on ${post.source} ↗` : post.readingTime}
+                  </span>
+                </PostLink>
               </li>
             ))}
           </ol>

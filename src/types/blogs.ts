@@ -11,6 +11,9 @@ export interface BlogPost {
 	readingTime: string;
 	readMinutes: number;
 	size: string;
+	/** Set for posts published elsewhere (e.g. Phasethru); links out instead of to /blog/[id]. */
+	externalUrl?: string;
+	source?: string;
 }
 
 /** Everything a list or card needs; no article body. */

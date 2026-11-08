@@ -22,3 +22,8 @@ export function formatDate(date: string, style: "short" | "long" = "short") {
 			: { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" },
 	);
 }
+
+/** Where a post lives: its page here, or its page on the other site. */
+export function postHref(post: { id: string; externalUrl?: string }) {
+	return post.externalUrl ?? `/blog/${post.id}`;
+}

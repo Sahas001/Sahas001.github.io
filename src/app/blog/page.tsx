@@ -1,5 +1,5 @@
 import BlogList from "@/components/BlogList";
-import { getAllPosts } from "@/lib/posts";
+import { getAllWriting } from "@/lib/posts";
 import { Metadata } from "next";
 import styles from "./page.module.css";
 
@@ -8,8 +8,8 @@ export const metadata: Metadata = {
   description: "Notes on systems, web, and things Sahas Timilsina is learning.",
 };
 
-export default function Page() {
-  const posts = getAllPosts();
+export default async function Page() {
+  const posts = await getAllWriting();
   return (
     <div className="container-read">
       <header className={styles.masthead}>
@@ -19,7 +19,8 @@ export default function Page() {
           <a href="https://phasethru.dev" target="_blank" rel="noopener noreferrer">
             phasethru.dev
           </a>
-          .
+          .{" "}
+          <a href="/rss.xml">Subscribe via RSS</a>.
         </p>
       </header>
       {posts.length === 0 ? (

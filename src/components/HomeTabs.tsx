@@ -12,7 +12,8 @@ export default function HomeTabs(tabs: Tabs) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <AnimatePresence mode="wait">
+    // initial={false}: the server-rendered page is visible straight away; only tab switches animate.
+    <AnimatePresence mode="wait" initial={false}>
       <motion.div
         key={selected}
         initial={reduceMotion ? false : { opacity: 0, y: 6 }}

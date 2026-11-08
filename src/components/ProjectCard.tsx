@@ -5,6 +5,11 @@ export default function ProjectCard({ project }: { project: Project }) {
   return (
     <article className={styles.row}>
       <div className={styles.main}>
+        {(project.area || project.year) && (
+          <p className={styles.meta}>
+            {[project.area, project.year, project.role].filter(Boolean).join("  /  ")}
+          </p>
+        )}
         <h2 className={styles.name}>
           <a href={project.githubLink} target="_blank" rel="noopener noreferrer">
             {project.name}

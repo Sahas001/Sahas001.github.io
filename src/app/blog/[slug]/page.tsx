@@ -1,6 +1,6 @@
 import { getAllPosts, getPostBySlug } from "@/lib/posts";
 import { categoryBadgeClass, formatDate } from "@/lib/format";
-import { markdownToHtml } from "@/lib/utils";
+import { renderPost } from "@/lib/utils";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
@@ -47,7 +47,8 @@ export default async function BlogPost(props: Params) {
     notFound();
   }
 
-  const content = await markdownToHtml(post.content || "");
+  const { html: content, headings } = await renderPost(post.content || "");
+  const sections = headings.filter((h) => h.depth === 2);
 
   // Same category first, then the newest of the rest.
   const others = getAllPosts().filter((p) => p.id !== post.id);
@@ -91,6 +92,21 @@ export default async function BlogPost(props: Params) {
           </div>
         </div>
       </header>
+
+      {sections.length >= 4 && (
+        <nav className={`${styles.toc} container-read`} aria-label="Contents">
+          <details open>
+            <summary>Contents</summary>
+            <ol>
+              {sections.map((h) => (
+                <li key={h.id}>
+                  <a href={`#${h.id}`}>{h.text}</a>
+                </li>
+              ))}
+            </ol>
+          </details>
+        </nav>
+      )}
 
       <div className={`${Markdown.markdown} container-read`} dangerouslySetInnerHTML={{ __html: content }} />
 

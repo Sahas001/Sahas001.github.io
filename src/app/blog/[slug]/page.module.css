@@ -81,6 +81,63 @@
   margin-top: 18px;
 }
 
+.toc {
+  margin-top: 32px;
+}
+
+.toc details {
+  max-width: 70ch;
+  padding: 14px 20px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-strong);
+  border-left: 4px solid var(--accent-mustard);
+}
+
+.toc summary {
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.toc ol {
+  margin-top: 10px;
+  padding-left: 22px;
+  columns: 2;
+  column-gap: 32px;
+}
+
+.toc li {
+  break-inside: avoid;
+  padding: 3px 0;
+  font-size: 1rem;
+}
+
+.toc li::marker {
+  font-family: var(--font-mono);
+  font-size: 0.8em;
+  color: var(--accent-mustard);
+}
+
+.toc a {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.toc a:hover {
+  color: var(--accent-vermilion);
+  text-decoration: underline;
+}
+
+@media (max-width: 560px) {
+  .toc ol {
+    columns: 1;
+  }
+}
+
 .related {
   margin-top: 64px;
   padding-top: 48px;

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import PostLink from "./PostLink";
 import { formatDate } from "@/lib/format";
 import type { BlogPostSummary } from "@/types/blogs";
 import styles from "./CoverStory.module.css";
@@ -15,7 +15,7 @@ export default function CoverStory({ post }: { post: BlogPostSummary }) {
         </div>
 
         <h2 className={styles.title}>
-          <Link href={`/blog/${post.id}`}>{post.title}</Link>
+          <PostLink post={post}>{post.title}</PostLink>
         </h2>
 
         {post.description && (
@@ -29,11 +29,11 @@ export default function CoverStory({ post }: { post: BlogPostSummary }) {
           <div className={styles.authorMeta}>
             <span>By {post.author}</span>
             <span className={styles.dot}>•</span>
-            <span>{post.readMinutes} min read</span>
+            {post.readMinutes > 0 && <span>{post.readMinutes} min read</span>}
           </div>
-          <Link href={`/blog/${post.id}`} className="btn-primary">
-            Read article →
-          </Link>
+          <PostLink post={post} className="btn-primary">
+            {post.source ? `Read on ${post.source} ↗` : "Read article →"}
+          </PostLink>
         </div>
       </div>
     </section>
