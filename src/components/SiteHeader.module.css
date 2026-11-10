@@ -79,11 +79,10 @@
 .navLink {
   position: relative;
   padding: 6px 0;
-  font-family: var(--font-display);
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 2px;
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+  font-weight: 650;
+  font-variation-settings: "wdth" 106;
   color: var(--ink);
   text-decoration: none;
 }

@@ -1,0 +1,56 @@
+.gallery {
+  min-width: 0;
+}
+
+/* All shots share one grid cell so the frame never changes height. */
+.frame {
+  display: grid;
+  border: 1px solid var(--night-line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #0f1017;
+}
+
+.shot {
+  grid-area: 1 / 1;
+  width: 100%;
+  height: auto;
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+
+.shotActive {
+  opacity: 1;
+}
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 22px;
+  margin-top: 14px;
+}
+
+.tab {
+  padding: 4px 0;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  font-family: var(--font-ui);
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--night-muted);
+  transition: color var(--transition-snappy), border-color var(--transition-snappy);
+}
+
+.tab:hover {
+  color: var(--night-text);
+}
+
+.tab[aria-pressed="true"] {
+  color: var(--night-text);
+  border-bottom-color: var(--accent-mustard);
+}
+
+.tab:focus-visible {
+  outline-color: var(--accent-mustard);
+}

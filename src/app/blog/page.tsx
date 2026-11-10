@@ -18,14 +18,12 @@ export default async function Page() {
         <a href="https://phasethru.dev" target="_blank" rel="noopener noreferrer">
           phasethru.dev
         </a>
-        . <a href="/rss.xml">Subscribe via RSS</a>.
+        .
       </PageHeader>
       {posts.length === 0 ? (
         <p className={styles.empty}>No posts yet. The first one is on its way.</p>
       ) : (
-        <div className={styles.feed}>
-          <BlogList posts={posts} />
-        </div>
+        <BlogList posts={posts} />
       )}
     </div>
   );

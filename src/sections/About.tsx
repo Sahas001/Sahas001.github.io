@@ -12,6 +12,14 @@ const spec = [
   { key: "writes at", value: "this blog and phasethru.dev" },
 ];
 
+const skillGroups = [
+  { category: "Languages", items: ["TypeScript", "Go", "Python", "C/C++"] },
+  { category: "Web", items: ["React", "Next.js", "Tailwind"] },
+  { category: "Backend", items: ["Node.js", "PostgreSQL", "Docker"] },
+  { category: "Tools", items: ["Git", "Linux", "Nginx"] },
+  { category: "Machine learning", items: ["TensorFlow", "CNNs", "Sequence models", "LLMs"] },
+];
+
 export default function About() {
   return (
     <div className="container-wide">
@@ -57,6 +65,22 @@ export default function About() {
           </TerminalWindow>
         </aside>
       </div>
+
+      <section className={styles.toolbox} aria-labelledby="toolbox-heading">
+        <h2 id="toolbox-heading" className={styles.toolboxTitle}>
+          What I work with
+        </h2>
+        <dl className={styles.stack}>
+          {skillGroups.map((group) => (
+            <div key={group.category}>
+              <dt>{group.category}</dt>
+              {group.items.map((item) => (
+                <dd key={item}>{item}</dd>
+              ))}
+            </div>
+          ))}
+        </dl>
+      </section>
     </div>
   );
 }

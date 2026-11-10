@@ -1,0 +1,51 @@
+/* The wrapper is the measuring stick: type is sized in its width (cqw). */
+.wrap {
+  container-type: inline-size;
+}
+
+/*
+ * --k-* are the words' widths in em at the resting width axis, measured
+ * from the font. Dividing the container width by them makes the name
+ * span it exactly, at any screen size, with no script.
+ */
+.name {
+  --k-first: 3;
+  --k-last: 4.53;
+  --k-gap: 0.3;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-variation-settings: "wdth" 85;
+  font-size: calc(100cqw / (var(--k-first) + var(--k-last) + var(--k-gap)));
+  line-height: 0.84;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--ink);
+  cursor: default;
+}
+
+.word {
+  display: block;
+}
+
+/* On narrow screens each word takes a full line and is sized to fill it. */
+@media (max-width: 720px) {
+  .name {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .word:first-child {
+    font-size: calc(100cqw / var(--k-first) / 1.02);
+  }
+
+  .word:last-child {
+    font-size: calc(100cqw / var(--k-last) / 1.02);
+  }
+}

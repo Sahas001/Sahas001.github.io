@@ -1,7 +1,11 @@
-.featured {
-  padding-bottom: 48px;
+.more {
+  padding-top: clamp(56px, 8vw, 104px);
+}
+
+.moreTitle {
   margin-bottom: 8px;
-  border-bottom: 2px solid var(--ink);
+  font-size: clamp(1.7rem, 2.6vw, 2.2rem);
+  font-variation-settings: "wdth" 104;
 }
 
 .list {

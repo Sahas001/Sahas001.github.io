@@ -1,17 +1,18 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Suspense } from "react";
-import { Chakra_Petch, IBM_Plex_Mono, Newsreader, Space_Mono } from "next/font/google";
+import { Anybody, Chakra_Petch, IBM_Plex_Mono, Newsreader } from "next/font/google";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter, { socials } from "@/components/SiteFooter";
 import CommandPalette from "@/components/CommandPalette";
 import { getAllPosts } from "@/lib/posts";
 import { certifications, featuredCertification } from "@/data/certifications";
 
-const spaceMono = Space_Mono({
+// Display and interface type. The width axis is what the home page name plays with.
+const anybody = Anybody({
   subsets: ["latin"],
-  weight: ["400", "700"],
-  variable: "--font-space-mono",
+  axes: ["wdth"],
+  variable: "--font-anybody",
 });
 
 const newsreader = Newsreader({
@@ -100,7 +101,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${spaceMono.variable} ${newsreader.variable} ${plexMono.variable} ${chakra.variable}`}
+      className={`${anybody.variable} ${newsreader.variable} ${plexMono.variable} ${chakra.variable}`}
     >
       <body>
         <script

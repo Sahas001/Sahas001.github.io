@@ -1,21 +1,11 @@
 .postHeader {
-  max-width: 860px;
-  margin: 32px auto 0;
-  padding: 0 clamp(16px, 4vw, 40px);
-}
-
-.headerCard {
-  padding: clamp(24px, 4vw, 36px);
-  border: 2px solid var(--ink);
-  background: var(--bg-card);
-  box-shadow: var(--shadow-hard);
+  padding-top: clamp(32px, 5vw, 64px);
 }
 
 .backLink {
-  display: inline-block;
-  margin-bottom: 8px;
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-family: var(--font-ui);
+  font-size: 0.88rem;
+  font-weight: 600;
   color: var(--text-muted);
   text-decoration: none;
 }
@@ -25,82 +15,63 @@
 }
 
 .title {
-  margin: 12px 0 0;
-  font-size: clamp(2rem, 5vw, 3rem);
-  line-height: 1.1;
+  margin-top: 22px;
+  font-size: clamp(2.3rem, 6.4vw, 4.4rem);
+  font-variation-settings: "wdth" 110;
+  line-height: 0.98;
 }
 
 .dek {
-  max-width: 60ch;
-  margin-top: 14px;
-  font-size: 1.15rem;
-  font-style: italic;
-  line-height: 1.55;
+  max-width: 54ch;
+  margin-top: 20px;
+  font-size: clamp(1.2rem, 2vw, 1.45rem);
+  line-height: 1.45;
   color: var(--text-secondary);
 }
 
 .metaRow {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  gap: 10px;
-  margin-top: 20px;
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
+  gap: 4px 22px;
+  margin-top: 26px;
+  padding-top: 18px;
+  border-top: 2px solid var(--ink);
+  font-family: var(--font-ui);
+  font-size: 0.88rem;
+  font-weight: 500;
   color: var(--text-muted);
 }
 
-.avatar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  flex-shrink: 0;
-  border-radius: 50%;
-  background: var(--accent-vermilion);
-  color: #fff;
-  font-family: var(--font-display);
-  font-size: 0.8rem;
-  font-weight: 700;
-}
-
 .author {
-  font-weight: 500;
-  color: var(--text-secondary);
-}
-
-.metaDot {
-  color: var(--border-strong);
+  font-weight: 700;
+  color: var(--ink);
 }
 
 .tagsRow {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-top: 18px;
+  margin-top: 16px;
 }
 
+/* ---------- Contents ---------- */
 .toc {
-  margin-top: 32px;
+  margin-top: 36px;
 }
 
 .toc details {
   max-width: 70ch;
-  padding: 14px 20px;
+  padding: 16px 22px;
   background: var(--bg-secondary);
-  border: 1px solid var(--border-strong);
   border-left: 4px solid var(--accent-mustard);
 }
 
 .toc summary {
   cursor: pointer;
-  font-family: var(--font-mono);
-  font-size: 0.74rem;
-  font-weight: 600;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--text-secondary);
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--ink);
 }
 
 .toc ol {
@@ -117,9 +88,9 @@
 }
 
 .toc li::marker {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: 0.8em;
-  color: var(--accent-mustard);
+  color: var(--text-muted);
 }
 
 .toc a {
@@ -132,42 +103,30 @@
   text-decoration: underline;
 }
 
-@media (max-width: 560px) {
-  .toc ol {
-    columns: 1;
-  }
+/* ---------- Related ---------- */
+.related {
+  margin-top: 72px;
+  padding-top: 40px;
+  border-top: 2px solid var(--ink);
 }
 
-.related {
-  margin-top: 64px;
-  padding-top: 48px;
-  border-top: 1px solid var(--border-color);
+.relatedTitle {
+  font-size: clamp(1.4rem, 2.2vw, 1.8rem);
+  font-variation-settings: "wdth" 104;
 }
 
 .relatedGrid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 4px;
+}
+
+.relatedGrid > :first-child {
+  border-top: none;
 }
 
 @media (max-width: 560px) {
-  /* The meta line wraps on phones; separators would dangle at line ends. */
-  .metaDot {
-    display: none;
-  }
-
-  .metaRow {
-    column-gap: 14px;
-  }
-}
-
-@media (max-width: 768px) {
-  .postHeader {
-    margin-top: 20px;
-  }
-
-  .relatedGrid {
-    grid-template-columns: 1fr;
+  .toc ol {
+    columns: 1;
   }
 }

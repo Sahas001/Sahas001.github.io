@@ -4,8 +4,10 @@ import TerminalWindow from "@/components/TerminalWindow";
 export default function NotFound() {
   return (
     <div className="container-wide" style={{ paddingTop: "clamp(48px, 8vw, 96px)" }}>
-      <h1 style={{ fontSize: "clamp(3rem, 10vw, 6rem)", lineHeight: 1 }}>404</h1>
-      <p style={{ marginTop: 12, fontSize: "1.2rem", fontStyle: "italic", color: "var(--text-secondary)" }}>
+      <h1 style={{ fontSize: "clamp(4rem, 16vw, 11rem)", lineHeight: 0.9, fontVariationSettings: '"wdth" 125' }}>
+        404
+      </h1>
+      <p style={{ marginTop: 18, fontSize: "1.3rem", color: "var(--text-secondary)" }}>
         This page doesn&apos;t exist. It may have moved, or the link has a typo.
       </p>
       <div style={{ marginTop: 32, maxWidth: 560 }}>

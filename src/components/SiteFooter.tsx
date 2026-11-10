@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { Suspense } from "react";
 import TerminalStatusBar from "./TerminalStatusBar";
-import Wordmark from "./Wordmark";
 import styles from "./SiteFooter.module.css";
 
 export const socials = [
@@ -15,15 +14,13 @@ export default function SiteFooter() {
     <footer className={styles.footer}>
       <div className={styles.grid}>
         <div>
-          <Link href="/" className={styles.brand} aria-label="Sahas Timilsina, home">
-            <Wordmark variant="light" />
-          </Link>
+          <h2 className={styles.contactTitle}>Say hello</h2>
+          <a href="mailto:sahastimilsina@gmail.com" className={styles.email}>
+            sahastimilsina@gmail.com
+          </a>
           <p className={styles.tagline}>
-            Building things and figuring out how they work. Longer writing lives on{" "}
-            <a href="https://phasethru.dev" target="_blank" rel="noopener noreferrer">
-              Phasethru
-            </a>
-            .
+            I&apos;m always glad to talk about systems, machine learning, or something you&apos;re
+            building.
           </p>
         </div>
 
@@ -42,8 +39,8 @@ export default function SiteFooter() {
               {s.label} ↗
             </a>
           ))}
-          <a href="mailto:sahastimilsina@gmail.com" className={styles.link}>
-            sahastimilsina@gmail.com
+          <a href="https://phasethru.dev" target="_blank" rel="noopener noreferrer" className={styles.link}>
+            Phasethru ↗
           </a>
         </div>
       </div>

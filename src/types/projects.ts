@@ -1,3 +1,10 @@
+export interface ProjectShot {
+  src: string;
+  /** Short name on the switcher, e.g. "Feed". */
+  label: string;
+  alt: string;
+}
+
 export interface Project {
   name: string;
   description: string;
@@ -11,6 +18,10 @@ export interface Project {
   area?: string;
   /** Concrete details: what it does and how. */
   highlights?: string[];
-  /** Steps of the system, left to right. Only for featured projects. */
+  /** Steps of the system, in order. */
   pipeline?: string[];
+  /** Real screenshots. */
+  shots?: ProjectShot[];
+  /** A longer write-up elsewhere. */
+  writeup?: { href: string; label: string };
 }
