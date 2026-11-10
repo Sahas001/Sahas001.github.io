@@ -61,35 +61,28 @@ export default async function BlogPost(props: Params) {
     <article>
       <ReadingProgress />
 
-      <header className={styles.postHeader}>
-        <div className={styles.headerCard}>
-          <Link href="/blog" className={styles.backLink}>
-            ← All articles
-          </Link>
+      <header className={`${styles.postHeader} container-read`}>
+        <Link href="/blog" className={styles.backLink}>
+          ← All posts
+        </Link>
 
-          <h1 className={styles.title}>{post.title}</h1>
+        <h1 className={styles.title}>{post.title}</h1>
 
-          {post.description && <p className={styles.dek}>{post.description}</p>}
+        {post.description && <p className={styles.dek}>{post.description}</p>}
 
-          <div className={styles.metaRow}>
-            <span className={styles.avatar} aria-hidden="true">
-              {post.author.charAt(0)}
+        <p className={styles.metaRow}>
+          <span className={styles.author}>{post.author}</span>
+          <time dateTime={post.date}>{formatDate(post.date, "long")}</time>
+          <span>{post.readingTime}</span>
+        </p>
+
+        <div className={styles.tagsRow}>
+          <span className={`tag-badge ${categoryBadgeClass(post.category)}`}>{post.category}</span>
+          {post.tags.map((tag) => (
+            <span key={tag} className="tag-badge">
+              {tag}
             </span>
-            <span className={styles.author}>{post.author}</span>
-            <span className={styles.metaDot}>•</span>
-            <time dateTime={post.date}>{formatDate(post.date, "long")}</time>
-            <span className={styles.metaDot}>•</span>
-            <span>{post.readingTime}</span>
-          </div>
-
-          <div className={styles.tagsRow}>
-            <span className={`tag-badge ${categoryBadgeClass(post.category)}`}>{post.category}</span>
-            {post.tags.map((tag) => (
-              <span key={tag} className="tag-badge">
-                {tag}
-              </span>
-            ))}
-          </div>
+          ))}
         </div>
       </header>
 
@@ -112,7 +105,7 @@ export default async function BlogPost(props: Params) {
 
       {related.length > 0 && (
         <section className={`${styles.related} container-read`}>
-          <h2 className="section-label">More from the blog</h2>
+          <h2 className={styles.relatedTitle}>More from the blog</h2>
           <div className={styles.relatedGrid}>
             {related.map((p) => (
               <ArticleCard key={p.id} post={p} />

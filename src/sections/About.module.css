@@ -20,6 +20,51 @@
   margin-top: 1.1em;
 }
 
+/* The opening paragraph reads as the lead. */
+.prose p:first-child {
+  font-size: clamp(1.45rem, 2.4vw, 1.8rem);
+  line-height: 1.35;
+}
+
+/* ---------- Toolbox ---------- */
+.toolbox {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 9fr);
+  gap: clamp(24px, 5vw, 72px);
+  margin-top: clamp(56px, 8vw, 104px);
+  padding-top: clamp(40px, 5vw, 64px);
+  border-top: 2px solid var(--ink);
+}
+
+.toolboxTitle {
+  font-size: clamp(1.7rem, 2.6vw, 2.2rem);
+  font-variation-settings: "wdth" 104;
+}
+
+.stack {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 28px 24px;
+}
+
+.stack dt {
+  margin-bottom: 8px;
+  font-family: var(--font-ui);
+  font-size: 0.84rem;
+  font-weight: 550;
+  color: var(--text-muted);
+}
+
+.stack dd {
+  /* No ligatures: the face would turn the "++" in C/C++ into a single glyph. */
+  font-variant-ligatures: none;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 650;
+  line-height: 1.75;
+  color: var(--ink);
+}
+
 .aside {
   min-width: 0;
 }
@@ -54,11 +99,15 @@
   color: var(--accent-mustard);
 }
 
-@media (max-width: 860px) {
-  .grid {
+@media (max-width: 900px) {
+  .grid,
+  .toolbox {
     grid-template-columns: 1fr;
   }
 
+  .stack {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 420px) {
