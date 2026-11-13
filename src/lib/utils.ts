@@ -23,14 +23,20 @@ function remarkStripLeadingTitle() {
 	};
 }
 
-// The post page owns the only <h1>; shift markdown headings down one level (# -> h2).
+// The post page owns the only <h1>, so the body's top-level sections must be <h2>.
+// Posts differ: some use `#` for sections, some `##`. Shift every heading by the same
+// amount so the shallowest one lands on h2, whichever style the post was written in.
 function remarkShiftHeadings() {
 	return (tree: MdNode) => {
+		const headings: MdNode[] = [];
 		const walk = (node: MdNode) => {
-			if (node.type === 'heading' && node.depth) node.depth = Math.min(node.depth + 1, 6);
+			if (node.type === 'heading' && node.depth) headings.push(node);
 			node.children?.forEach(walk);
 		};
 		walk(tree);
+		if (headings.length === 0) return;
+		const shift = 2 - Math.min(...headings.map((h) => h.depth!));
+		for (const h of headings) h.depth = Math.min(Math.max(h.depth! + shift, 2), 6);
 	};
 }
 
