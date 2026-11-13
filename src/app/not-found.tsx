@@ -4,7 +4,7 @@ import TerminalWindow from "@/components/TerminalWindow";
 export default function NotFound() {
   return (
     <div className="container-wide" style={{ paddingTop: "clamp(48px, 8vw, 96px)" }}>
-      <h1 style={{ fontSize: "clamp(4rem, 16vw, 11rem)", lineHeight: 0.9, fontVariationSettings: '"wdth" 125' }}>
+      <h1 style={{ fontSize: "clamp(4rem, 16vw, 11rem)", lineHeight: 0.9, fontVariationSettings: '"wdth" calc(125 * var(--wdth-scale))' }}>
         404
       </h1>
       <p style={{ marginTop: 18, fontSize: "1.3rem", color: "var(--text-secondary)" }}>

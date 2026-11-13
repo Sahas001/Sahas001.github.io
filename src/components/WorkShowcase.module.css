@@ -15,7 +15,7 @@
 
 .heading {
   font-size: clamp(2rem, 5vw, 3.6rem);
-  font-variation-settings: "wdth" 120;
+  font-variation-settings: "wdth" calc(120 * var(--wdth-scale));
   color: var(--night-text);
 }
 
@@ -65,7 +65,7 @@
 .name {
   margin-top: 8px;
   font-size: clamp(2.2rem, 4.4vw, 3.4rem);
-  font-variation-settings: "wdth" 118;
+  font-variation-settings: "wdth" calc(118 * var(--wdth-scale));
   line-height: 1;
   color: var(--night-text);
 }
@@ -153,7 +153,7 @@
   font-family: var(--font-display);
   font-size: clamp(1.05rem, 1.8vw, 1.35rem);
   font-weight: 700;
-  font-variation-settings: "wdth" 110;
+  font-variation-settings: "wdth" calc(110 * var(--wdth-scale));
   line-height: 1.2;
   color: var(--night-text);
   border: 2px solid var(--night-line);
@@ -200,5 +200,60 @@
 
   .pipeline {
     margin: 0;
+  }
+}
+
+/* Phones */
+@media (max-width: 640px) {
+  .band {
+    padding: 48px 0;
+  }
+
+  .header {
+    margin-bottom: 28px;
+  }
+
+  .cases {
+    gap: 56px;
+  }
+
+  .case,
+  .flip {
+    gap: 22px;
+  }
+
+  .name {
+    font-size: 2rem;
+  }
+
+  .lede {
+    margin-top: 12px;
+    font-size: 1.08rem;
+  }
+
+  .links {
+    margin-top: 18px;
+  }
+
+  /* The summary is enough here; bullets, stack and diagram are on the Projects page. */
+  .compact .highlights,
+  .compact .stack,
+  .compact .pipeline {
+    display: none;
+  }
+
+  .pipeline li {
+    gap: 14px;
+    padding: 12px 16px;
+    font-size: 1rem;
+  }
+
+  .pipeline li + li {
+    margin-top: 16px;
+  }
+
+  .pipeline li + li::after {
+    top: -18px;
+    height: 16px;
   }
 }

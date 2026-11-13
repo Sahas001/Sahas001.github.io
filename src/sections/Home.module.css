@@ -79,7 +79,7 @@
 
 .railTitle {
   font-size: clamp(1.7rem, 2.6vw, 2.2rem);
-  font-variation-settings: "wdth" 104;
+  font-variation-settings: "wdth" calc(104 * var(--wdth-scale));
 }
 
 .railNote {
@@ -114,7 +114,7 @@
 .postTitle {
   font-family: var(--font-display);
   font-weight: 750;
-  font-variation-settings: "wdth" 108;
+  font-variation-settings: "wdth" calc(108 * var(--wdth-scale));
   font-size: clamp(1.4rem, 2.6vw, 2rem);
   line-height: 1.12;
   letter-spacing: -0.012em;
@@ -144,6 +144,41 @@
 }
 
 /* ---------- Responsive ---------- */
+/* Phones: the hero keeps the name, one line about me and the two buttons.
+   The social links are in the menu and footer; excerpts would crowd the list. */
+@media (max-width: 640px) {
+  .socials,
+  .postExcerpt {
+    display: none;
+  }
+
+  .sub {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .heroGrid {
+    gap: 44px;
+  }
+
+  .rail {
+    padding: 48px 0;
+  }
+
+  .railNote {
+    margin: 10px 0 14px;
+  }
+
+  .postRow {
+    gap: 6px;
+    padding: 20px 0;
+  }
+
+  .postTitle {
+    font-size: 1.3rem;
+  }
+}
+
 @media (max-width: 900px) {
   .heroGrid {
     grid-template-columns: 1fr;
