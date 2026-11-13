@@ -63,14 +63,20 @@ function Case({ project, flip }: { project: Project; flip: boolean }) {
 export default function WorkShowcase({
   projects,
   heading,
+  compact = false,
   children,
 }: {
   projects: Project[];
   heading?: string;
+  /** On phones, show the summary only; the detail lives on the Projects page. */
+  compact?: boolean;
   children?: React.ReactNode;
 }) {
   return (
-    <section className={styles.band} aria-label={heading ?? "Featured projects"}>
+    <section
+      className={`${styles.band} ${compact ? styles.compact : ""}`}
+      aria-label={heading ?? "Featured projects"}
+    >
       <div className="container-wide">
         {heading && (
           <header className={styles.header}>

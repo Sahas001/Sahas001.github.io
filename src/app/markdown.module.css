@@ -15,7 +15,7 @@
 .markdown h2 {
   margin: 56px 0 16px;
   font-size: clamp(1.6rem, 3vw, 2.1rem);
-  font-variation-settings: "wdth" 106;
+  font-variation-settings: "wdth" calc(106 * var(--wdth-scale));
 }
 
 .markdown :global(.heading-anchor) {
@@ -40,7 +40,7 @@
 .markdown h3 {
   margin: 36px 0 12px;
   font-size: 1.3rem;
-  font-variation-settings: "wdth" 102;
+  font-variation-settings: "wdth" calc(102 * var(--wdth-scale));
 }
 
 .markdown h4 {
@@ -151,6 +151,8 @@
 .markdown :global(pre.language-python)::before, .markdown :global(pre.language-py)::before { content: "python"; }
 .markdown :global(pre.language-rust)::before, .markdown :global(pre.language-rs)::before { content: "rust"; }
 .markdown :global(pre.language-json)::before { content: "json"; }
+.markdown :global(pre.language-sql)::before { content: "sql"; }
+.markdown :global(pre.language-yaml)::before, .markdown :global(pre.language-yml)::before { content: "yaml"; }
 .markdown :global(pre.language-html)::before { content: "html"; }
 .markdown :global(pre.language-css)::before { content: "css"; }
 .markdown :global(pre.language-c)::before { content: "c"; }
@@ -259,7 +261,19 @@
 
 @media (max-width: 640px) {
   .markdown {
+    margin-top: 32px;
     font-size: 1.05rem;
+    line-height: 1.72;
+  }
+
+  .markdown h2 {
+    margin-top: 44px;
+    font-size: 1.5rem;
+  }
+
+  .markdown pre {
+    padding: 36px 16px 16px;
+    font-size: 0.8rem;
   }
 
   .markdown pre {

@@ -52,7 +52,7 @@ export default function Home({ latest }: { latest: BlogPostSummary[] }) {
         </div>
       </section>
 
-      <WorkShowcase projects={featuredProjects} heading="Selected work">
+      <WorkShowcase projects={featuredProjects} heading="Selected work" compact>
         <Link href="/?tab=projects">All projects</Link>
       </WorkShowcase>
 

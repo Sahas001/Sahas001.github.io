@@ -44,3 +44,25 @@
   line-height: 1.55;
   color: var(--text-secondary);
 }
+
+@media (max-width: 640px) {
+  .card {
+    gap: 14px;
+    padding: 20px;
+    box-shadow: var(--shadow-hard);
+  }
+
+  .meta {
+    gap: 2px 14px;
+    font-size: 0.8rem;
+  }
+
+  .title {
+    font-size: 1.75rem;
+    line-height: 1.05;
+  }
+
+  .excerpt {
+    font-size: 1.02rem;
+  }
+}

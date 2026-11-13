@@ -8,7 +8,7 @@
 
 .name {
   font-size: clamp(1.5rem, 2.6vw, 2rem);
-  font-variation-settings: "wdth" 108;
+  font-variation-settings: "wdth" calc(108 * var(--wdth-scale));
 }
 
 .name a {
@@ -54,5 +54,19 @@
   .row {
     grid-template-columns: 1fr;
     gap: 14px;
+  }
+}
+
+@media (max-width: 640px) {
+  .row {
+    padding: 26px 0;
+  }
+
+  .name {
+    font-size: 1.45rem;
+  }
+
+  .description {
+    font-size: 1.02rem;
   }
 }

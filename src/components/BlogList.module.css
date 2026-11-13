@@ -75,7 +75,7 @@
 .sectionHeader {
   margin-bottom: 4px;
   font-size: clamp(1.4rem, 2.2vw, 1.8rem);
-  font-variation-settings: "wdth" 104;
+  font-variation-settings: "wdth" calc(104 * var(--wdth-scale));
 }
 
 .feedList {
@@ -111,5 +111,22 @@
 
   .side {
     position: static;
+  }
+}
+
+@media (max-width: 640px) {
+  .hint {
+    display: none;
+  }
+
+  .side {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .searchRow {
+    align-self: stretch;
   }
 }

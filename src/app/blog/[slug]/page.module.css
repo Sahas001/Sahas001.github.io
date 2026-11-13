@@ -17,7 +17,7 @@
 .title {
   margin-top: 22px;
   font-size: clamp(2.3rem, 6.4vw, 4.4rem);
-  font-variation-settings: "wdth" 110;
+  font-variation-settings: "wdth" calc(110 * var(--wdth-scale));
   line-height: 0.98;
 }
 
@@ -59,19 +59,27 @@
   margin-top: 36px;
 }
 
-.toc details {
+.tocOpen,
+.tocFolded {
   max-width: 70ch;
   padding: 16px 22px;
   background: var(--bg-secondary);
   border-left: 4px solid var(--accent-mustard);
 }
 
-.toc summary {
-  cursor: pointer;
+.tocFolded {
+  display: none;
+}
+
+.tocLabel {
   font-family: var(--font-ui);
   font-size: 0.9rem;
   font-weight: 700;
   color: var(--ink);
+}
+
+summary.tocLabel {
+  cursor: pointer;
 }
 
 .toc ol {
@@ -112,7 +120,7 @@
 
 .relatedTitle {
   font-size: clamp(1.4rem, 2.2vw, 1.8rem);
-  font-variation-settings: "wdth" 104;
+  font-variation-settings: "wdth" calc(104 * var(--wdth-scale));
 }
 
 .relatedGrid {
@@ -125,8 +133,53 @@
   border-top: none;
 }
 
-@media (max-width: 560px) {
+@media (max-width: 640px) {
+  .postHeader {
+    padding-top: 24px;
+  }
+
+  .title {
+    margin-top: 16px;
+    font-size: 2.1rem;
+    line-height: 1.02;
+  }
+
+  .dek {
+    margin-top: 14px;
+    font-size: 1.12rem;
+  }
+
+  .metaRow {
+    margin-top: 20px;
+    padding-top: 14px;
+    gap: 2px 16px;
+    font-size: 0.84rem;
+  }
+
+  /* The category is enough on a phone; the full tag list is on wider screens. */
+  .tagsRow > :not(:first-child) {
+    display: none;
+  }
+
+  .toc {
+    margin-top: 24px;
+  }
+
+  .tocOpen {
+    display: none;
+  }
+
+  .tocFolded {
+    display: block;
+    padding: 12px 16px;
+  }
+
   .toc ol {
     columns: 1;
+  }
+
+  .related {
+    margin-top: 48px;
+    padding-top: 28px;
   }
 }

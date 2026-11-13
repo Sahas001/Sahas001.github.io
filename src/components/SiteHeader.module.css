@@ -82,7 +82,7 @@
   font-family: var(--font-ui);
   font-size: 0.95rem;
   font-weight: 650;
-  font-variation-settings: "wdth" 106;
+  font-variation-settings: "wdth" calc(106 * var(--wdth-scale));
   color: var(--ink);
   text-decoration: none;
 }
@@ -166,6 +166,16 @@
   display: block;
   height: 2px;
   background: var(--ink);
+}
+
+@media (max-width: 640px) {
+  .cmdBtn {
+    display: none;
+  }
+
+  .path {
+    max-width: calc(100vw - 150px);
+  }
 }
 
 @media (max-width: 860px) {

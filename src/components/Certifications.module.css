@@ -21,7 +21,7 @@
   margin-top: 8px;
   padding-right: 150px;
   font-size: clamp(1.9rem, 4vw, 3rem);
-  font-variation-settings: "wdth" 110;
+  font-variation-settings: "wdth" calc(110 * var(--wdth-scale));
   line-height: 1.02;
 }
 
@@ -201,9 +201,42 @@
 }
 
 @media (max-width: 640px) {
+  .wrap {
+    gap: 36px;
+  }
+
   .row {
-    grid-template-columns: 1fr;
-    gap: 6px;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "date verify"
+      "body body";
+    gap: 6px 16px;
+    padding: 16px 0;
+  }
+
+  .date {
+    grid-area: date;
+  }
+
+  .body {
+    grid-area: body;
+  }
+
+  .verify {
+    grid-area: verify;
+  }
+
+  .title {
+    font-size: 1.08rem;
+  }
+
+  .track {
+    margin-top: 22px;
+    gap: 10px;
+  }
+
+  .course {
+    font-size: 0.96rem;
   }
 }
 

@@ -38,7 +38,7 @@
 
 .toolboxTitle {
   font-size: clamp(1.7rem, 2.6vw, 2.2rem);
-  font-variation-settings: "wdth" 104;
+  font-variation-settings: "wdth" calc(104 * var(--wdth-scale));
 }
 
 .stack {
@@ -56,8 +56,6 @@
 }
 
 .stack dd {
-  /* No ligatures: the face would turn the "++" in C/C++ into a single glyph. */
-  font-variant-ligatures: none;
   font-family: var(--font-display);
   font-size: 1.05rem;
   font-weight: 650;
@@ -114,5 +112,22 @@
   .specRow {
     grid-template-columns: 1fr;
     gap: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .prose p {
+    font-size: 1.08rem;
+    line-height: 1.7;
+  }
+
+  .prose p:first-child {
+    font-size: 1.3rem;
+  }
+
+  .toolbox {
+    margin-top: 48px;
+    padding-top: 32px;
+    gap: 20px;
   }
 }

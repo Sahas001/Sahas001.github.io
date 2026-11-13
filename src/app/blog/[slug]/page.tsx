@@ -57,6 +57,16 @@ export default async function BlogPost(props: Params) {
     ...others.filter((p) => p.category !== post.category),
   ].slice(0, 2);
 
+  const tocList = (
+    <ol>
+      {sections.map((h) => (
+        <li key={h.id}>
+          <a href={`#${h.id}`}>{h.text}</a>
+        </li>
+      ))}
+    </ol>
+  );
+
   return (
     <article>
       <ReadingProgress />
@@ -72,7 +82,7 @@ export default async function BlogPost(props: Params) {
 
         <p className={styles.metaRow}>
           <span className={styles.author}>{post.author}</span>
-          <time dateTime={post.date}>{formatDate(post.date, "long")}</time>
+          <time dateTime={post.date}>{formatDate(post.date)}</time>
           <span>{post.readingTime}</span>
         </p>
 
@@ -88,15 +98,15 @@ export default async function BlogPost(props: Params) {
 
       {sections.length >= 4 && (
         <nav className={`${styles.toc} container-read`} aria-label="Contents">
-          <details open>
-            <summary>Contents</summary>
-            <ol>
-              {sections.map((h) => (
-                <li key={h.id}>
-                  <a href={`#${h.id}`}>{h.text}</a>
-                </li>
-              ))}
-            </ol>
+          {/* Two copies, one shown per screen size: always open on wide screens,
+              folded away on phones so the article starts sooner. */}
+          <div className={styles.tocOpen}>
+            <p className={styles.tocLabel}>Contents</p>
+            {tocList}
+          </div>
+          <details className={styles.tocFolded}>
+            <summary className={styles.tocLabel}>Contents</summary>
+            {tocList}
           </details>
         </nav>
       )}
